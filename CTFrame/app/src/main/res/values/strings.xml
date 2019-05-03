@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">default</string>
+    <string name="title_home">Home</string>
+    <string name="title_pixabay">Pixabay</string>
+    <string name="title_googledrive">GoogleDrive</string>
+    <string name="title_mygallery">MyGallery</string>
+    <string name="StringValue">이미지가 열리지가 않습니다.</string>
+</resources>

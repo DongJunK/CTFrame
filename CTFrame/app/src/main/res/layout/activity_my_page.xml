@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fillViewport="true"
     tools:context=".Activity_Signup">
 
     <android.support.constraint.ConstraintLayout
@@ -66,7 +67,7 @@
         <ImageView
             android:id="@+id/back_profile"
             android:layout_width="0dp"
-            android:layout_height="209dp"
+            android:layout_height="189dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -170,12 +171,10 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
             android:background="@color/ctframe_color"
             android:text="뒤로 가기"
             android:textColor="@color/white"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"

@@ -1,5 +1,6 @@
 package com.example.adefault;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_pixabay:
                     mTextMessage.setText(R.string.title_pixabay);
+                    Intent intent = new Intent(MainActivity.this, Activity_Pixabay.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_googledrive:
                     mTextMessage.setText(R.string.title_googledrive);

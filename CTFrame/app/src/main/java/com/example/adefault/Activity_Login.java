@@ -23,11 +23,11 @@ public class Activity_Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //forgot_pw_Tv = (TextView)findViewById(R.id.forgot_pw_Tv);
-        //sign_up_Tv = (TextView)findViewById(R.id.sign_up_Tv);
-        //login_Btn =(Button)findViewById(R.id.login_Btn);
+        forgot_pw_Tv = (TextView)findViewById(R.id.forgot_pw_Tv);
+        sign_up_Tv = (TextView)findViewById(R.id.sign_up_Tv);
+        login_Btn =(Button)findViewById(R.id.login_Btn);
 
-        /*//로그인 동작
+        //로그인 동작
         ((Button) login_Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +69,8 @@ public class Activity_Login extends AppCompatActivity {
 
                 }
             }
-
-        });*/
+             */
+        });
 
     }
 

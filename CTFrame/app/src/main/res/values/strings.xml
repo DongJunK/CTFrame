@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">default</string>
-    <string name="title_home">Home</string>
+    <string name="title_mypage">Mypage</string>
     <string name="title_pixabay">Pixabay</string>
     <string name="title_googledrive">GoogleDrive</string>
     <string name="title_mygallery">MyGallery</string>

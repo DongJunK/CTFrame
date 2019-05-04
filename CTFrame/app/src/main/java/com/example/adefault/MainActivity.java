@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_mypage:
+                    mTextMessage.setText("Mypage");
                     return true;
                 case R.id.navigation_pixabay:
                     mTextMessage.setText(R.string.title_pixabay);

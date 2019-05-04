@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
-
-    <item
         android:id="@+id/navigation_pixabay"
         android:title="Pixabay"
         android:icon="@drawable/pixabay"/>
@@ -18,5 +13,10 @@
         android:id="@+id/navigation_mygallery"
         android:title="MyGallery"
         android:icon="@drawable/gallery_white"/>
+
+    <item
+        android:id="@+id/navigation_mypage"
+        android:icon="@drawable/icon_user"
+        android:title="Mypage" />
 
 </menu>

@@ -11,7 +11,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline_left"
@@ -29,7 +30,7 @@
 
         <!-- 로고 -->
         <ImageView
-            android:id="@+id/ic_logo"
+            android:id="@+id/iv_logo"
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:src="@drawable/title"
@@ -40,7 +41,7 @@
 
         <!--제목 테두리-->
         <ImageView
-            android:id="@+id/sign_up_bg"
+            android:id="@+id/iv_mypage"
             android:layout_width="140dp"
             android:layout_height="80dp"
             android:layout_marginStart="3dp"
@@ -52,11 +53,12 @@
 
         <!--내 정보-->
         <TextView
-            android:id="@+id/Sign_up"
+            android:id="@+id/tv_mypage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="85dp"
             android:text="내 정보"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -64,104 +66,103 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/back_profile"
-            android:layout_width="0dp"
-            android:layout_height="189dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="70dp"
+            android:textColor="@color/white"
+            android:text="E-mail"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_bg"
-            app:srcCompat="@color/orange" />
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/iv_mypage"/>
 
-        <ImageView
-            android:id="@+id/profile_img"
-            android:layout_width="345dp"
-            android:layout_height="141dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/back_profile"
-            app:layout_constraintEnd_toEndOf="@+id/back_profile"
-            app:layout_constraintStart_toStartOf="@+id/back_profile"
-            app:layout_constraintTop_toTopOf="@+id/back_profile"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <!--이메일 아이콘-->
-        <ImageView
-            android:id="@+id/ic_email"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_launcher_round"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/back_profile" />
-
-        <!--이메일 출력 -->
-        <TextView
-            android:id="@+id/ed_email"
+        <EditText
+            android:id="@+id/edt_email"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:text="xogusrla09@gmail.com"
-            android:textAlignment="textStart"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-            app:layout_constraintStart_toEndOf="@+id/ic_email"
-            app:layout_constraintTop_toBottomOf="@+id/back_profile"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_white"
+            android:drawableRight="@drawable/ic_person_black_24dp"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
-        <!--이름 아이콘-->
-        <ImageView
-            android:id="@+id/ic_name"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:src="@mipmap/ic_launcher_round"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/ic_email" />
-
-        <!--이름 출력 -->
         <TextView
-            android:id="@+id/ed_name"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="15dp"
-            android:text="김태현"
+            android:textColor="@color/white"
+            android:text="name"
             android:textAlignment="textStart"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-            app:layout_constraintStart_toEndOf="@+id/ic_name"
-            app:layout_constraintTop_toBottomOf="@+id/ed_email" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/edt_email"/>
 
-        <!--like 아이콘-->
-        <ImageView
-            android:id="@+id/ic_like"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:src="@mipmap/ic_launcher_round"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/ic_name" />
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_white"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-        <!--like 출력 -->
         <TextView
-            android:id="@+id/ed_like"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="8dp"
+            android:id="@+id/tv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="15dp"
-            android:text="1. cat \n2. car \n3. blue"
+            android:textColor="@color/white"
+            android:text="password"
             android:textAlignment="textStart"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-            app:layout_constraintStart_toEndOf="@+id/ic_like"
-            app:layout_constraintTop_toBottomOf="@+id/ed_name" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/edt_name"/>
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_white"
+            android:drawableRight="@drawable/ic_eye"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
         <!-- forgot password 글자 -->
 
@@ -171,14 +172,15 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
-            android:background="@color/ctframe_color"
-            android:text="뒤로 가기"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ctframe_button"
+            android:text="수정하기"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/ed_like" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

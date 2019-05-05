@@ -30,7 +30,7 @@
 
         <!-- 로고 -->
         <ImageView
-            android:id="@+id/ic_logo"
+            android:id="@+id/iv_logo"
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:src="@drawable/title"
@@ -39,7 +39,7 @@
 
         <!--제목 테두리-->
         <ImageView
-            android:id="@+id/sign_up_bg"
+            android:id="@+id/iv_sing_up"
             android:layout_width="140dp"
             android:layout_height="80dp"
             android:layout_marginStart="3dp"
@@ -51,7 +51,7 @@
 
         <!--Sign up text-->
         <TextView
-            android:id="@+id/Sign_up"
+            android:id="@+id/tv_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="85dp"
@@ -66,17 +66,17 @@
 
         <!--이메일 체크 버튼-->
         <Button
-            android:id="@+id/btn_check"
+            android:id="@+id/btn_email_check"
             android:layout_width="117dp"
             android:layout_height="30dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/btn_bg"
             android:text="인증코드 발송"
-            app:layout_constraintBottom_toTopOf="@+id/user_email"
+            app:layout_constraintBottom_toTopOf="@+id/edt_email"
             app:layout_constraintEnd_toStartOf="@id/guideline_right" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -86,13 +86,13 @@
             android:textAlignment="textStart"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/user_email"
-            app:layout_constraintEnd_toEndOf="@+id/btn_check"
+            app:layout_constraintBottom_toTopOf="@+id/edt_email"
+            app:layout_constraintEnd_toEndOf="@+id/btn_email_check"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left" />
 
         <EditText
-            android:id="@+id/user_email"
+            android:id="@+id/edt_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
@@ -104,11 +104,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_bg" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_sing_up" />
 
         <!--이메일 입력창-->
         <EditText
-            android:id="@+id/Email_authenticode"
+            android:id="@+id/edt_email_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
@@ -119,10 +119,10 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/email2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_code" />
 
         <TextView
-            android:id="@+id/email2"
+            android:id="@+id/tv_email_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -133,26 +133,26 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/Email_authenticode"
+            app:layout_constraintBottom_toTopOf="@+id/edt_email_code"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/user_email" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
         <Button
-            android:id="@+id/btn_authenticode"
+            android:id="@+id/btn_email_code"
             android:layout_width="88dp"
             android:layout_height="30dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/btn_bg"
             android:text="코드 확인"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/Email_authenticode"
+            app:layout_constraintBottom_toTopOf="@+id/edt_email_code"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right" />
 
         <!--비번 안내창-->
         <TextView
-            android:id="@+id/signin_password"
+            android:id="@+id/tv_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -165,11 +165,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/Email_authenticode" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_email_code" />
 
         <!--비번 입력창-->
         <EditText
-            android:id="@+id/user_password"
+            android:id="@+id/edt_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
@@ -180,11 +180,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/signin_password" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
         <!--비번 재 확인창-->
         <TextView
-            android:id="@+id/reconfirm_pw_text"
+            android:id="@+id/tv_password_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -197,11 +197,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/user_password" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
         <!--비번 재확인 창-->
         <EditText
-            android:id="@+id/reconfirm_pw"
+            android:id="@+id/edt_password_confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
@@ -212,11 +212,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/reconfirm_pw_text" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_password_confirm" />
 
         <!--이름 안내 창-->
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -229,11 +229,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/reconfirm_pw" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_password_confirm" />
 
         <!--이름 입력 창-->
         <EditText
-            android:id="@+id/signup_name"
+            android:id="@+id/edt_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
@@ -244,11 +244,11 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <!--회원가입 완료 버튼-->
         <Button
-            android:id="@+id/Complete"
+            android:id="@+id/btn_sign_up"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
@@ -260,7 +260,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_right"
             app:layout_constraintStart_toStartOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/signup_name" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

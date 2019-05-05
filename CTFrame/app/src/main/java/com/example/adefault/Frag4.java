@@ -157,7 +157,6 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
         //이미지 array list 반환
         for(int i = 0 ; i<img_url_list.size(); i++){
-            Log.i("pixacheck", img_url_list.get(i));
             img_url_list_result.add(img_url_list.get(i));
         }
 

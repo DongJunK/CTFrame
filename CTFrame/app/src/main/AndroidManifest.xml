@@ -17,11 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity_Fullscreen"></activity>
         <activity android:name=".Activity_Pixabay" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activity_MyPage"></activity>
         <activity android:name=".Activity_Signup"></activity>

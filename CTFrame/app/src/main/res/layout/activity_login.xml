@@ -86,7 +86,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="150dp"
             android:layout_marginEnd="20dp"
-            android:background="@color/ctframe_color"
+            android:background="@drawable/ctframe_button"
             android:text="로그인"
             android:textAllCaps="false"
             android:textColor="@color/white"

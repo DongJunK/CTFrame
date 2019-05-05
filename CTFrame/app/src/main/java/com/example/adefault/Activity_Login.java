@@ -22,9 +22,13 @@ public class Activity_Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //리소스 매칭
         tv_sign_up = (TextView)findViewById(R.id.tv_sign_up);
         btn_login =(Button)findViewById(R.id.btn_login);
+        edt_email = (EditText)findViewById(R.id.edt_email);
+        edt_password = (EditText)findViewById(R.id.edt_password);
 
+        //리스너 등록
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

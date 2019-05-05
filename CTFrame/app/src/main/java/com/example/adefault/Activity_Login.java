@@ -1,6 +1,8 @@
 package com.example.adefault;
 
+import android.Manifest;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,9 @@ public class Activity_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //퍼미션 요청
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
         //리소스 매칭
         tv_sign_up = (TextView)findViewById(R.id.tv_sign_up);

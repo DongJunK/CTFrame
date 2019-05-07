@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_mypage:
-                    mTextMessage.setText("Mypage");
+                    //mTextMessage.setText("Mypage");
                     break;
                 case R.id.navigation_pixabay:
-                    mTextMessage.setText(R.string.title_pixabay);
+                    //mTextMessage.setText(R.string.title_pixabay);
                     Intent intent = new Intent(MainActivity.this, Activity_Pixabay.class);
                     startActivity(intent);
                     break;

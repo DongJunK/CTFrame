@@ -43,13 +43,23 @@ public class Activity_Fullscreen extends AppCompatActivity {
         viewPager.setCurrentItem(position,true);
     }
 
+
+    //줌인 줌 아웃 기능 막음
     @Override
     public boolean onTouchEvent(MotionEvent ev){
 
         try{
             return super.onTouchEvent(ev);
         }catch (IllegalArgumentException e){
-            return true;
+
         }
+        return false;
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return true;
+    }
+
+
 }

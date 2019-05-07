@@ -19,6 +19,8 @@ import com.bumptech.glide.request.target.Target;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by Lirvess on 2019-05-02.
  */
@@ -26,10 +28,18 @@ import com.example.adefault.R;
 public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapter.ImageViewHolder> {
 
     Context context;
-    String[] uriList;
+    ArrayList<String> uriList;
+    //String[] uriList; //수정
     IRecyclerViewClickListener clickListener;
 
+    /*
     public  GalleryImageAdapter(Context context, String[]uriList, IRecyclerViewClickListener clickListener){
+        this.context = context;
+        this.uriList = uriList;
+        this.clickListener = clickListener;
+    }
+     */
+    public  GalleryImageAdapter(Context context, ArrayList<String> uriList, IRecyclerViewClickListener clickListener){
         this.context = context;
         this.uriList = uriList;
         this.clickListener = clickListener;
@@ -43,7 +53,8 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        String currentImage = uriList[position];
+        //String currentImage = uriList[position];  //수정
+        String currentImage = uriList.get(position);
         ImageView imageView = holder.imageView;
         final ProgressBar progressBar = holder.progressBar;
 
@@ -64,7 +75,9 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
 
     @Override
     public int getItemCount() {
-        return uriList.length;
+        //return uriList.length; //수정
+        return uriList.size();
+
     }
 
     public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{

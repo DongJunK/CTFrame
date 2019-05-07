@@ -6,16 +6,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 public class Activity_Pixabay extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pixabay);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //저장 버튼 눌렀을때 동작
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

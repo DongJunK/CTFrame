@@ -14,13 +14,18 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.adefault.R;
 import com.github.chrisbanes.photoview.PhotoView;
 
+import java.util.ArrayList;
+
 public class FullSizeAdapter extends PagerAdapter
 {
     Context context;
-    String[] images;
+    //수정
+    //String[] images;
+    ArrayList<String> images;
     LayoutInflater inflater;
 
-    public FullSizeAdapter(Context context, String[] images)
+    //수정 String[] images 를 ArrayList<String> 으로
+    public FullSizeAdapter(Context context, ArrayList<String> images)
     {
         this.context =context;
         this.images = images;
@@ -29,7 +34,7 @@ public class FullSizeAdapter extends PagerAdapter
 
     @Override
     public int getCount() {
-        return images.length;
+        return images.size();
     }
 
     @Override
@@ -49,7 +54,8 @@ public class FullSizeAdapter extends PagerAdapter
     //  ViewPager vp = (ViewPager)container;
       //vp.addView(v,0);return v;
         PhotoView imageView = (PhotoView)v.findViewById(R.id.img);
-        Glide.with(context).load(images[position]).apply(new RequestOptions().centerInside())
+        //수정 .load(images[position] 을 .load(images.get(position)))
+        Glide.with(context).load(images.get(position)).apply(new RequestOptions().centerInside())
                 .thumbnail(0.5f)
                 .into(imageView);
   ViewPager vp = (ViewPager)container;

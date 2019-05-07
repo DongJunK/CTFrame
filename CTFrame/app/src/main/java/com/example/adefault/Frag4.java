@@ -2,12 +2,14 @@ package com.example.adefault;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,13 +40,18 @@ public class Frag4 extends android.support.v4.app.Fragment {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
+    public static int page_num =1;      //초기 페이지 값
+    public static Thread thread;
+
     ArrayList<String> img_url_list_result = new ArrayList<>();     //이미지 url를 저장할 array list
     ArrayList<String> img_tag_list = new ArrayList<>();     //이미지 tag를 저장할 array list
     ArrayList<String> img_user_list = new ArrayList<>();    //이미지 user를 저장할 array list
     ArrayList<String> img_like_list = new ArrayList<>();    //이미지 like를 저장할  array list
 
-    final String[] images = new String[10];     //출력할 사진 갯수
+    //final String[] images = new String[20];     //출력할 사진 갯수//수정
+    final ArrayList<String> images = new ArrayList<>();
     public static  final int LOAD_SUCCESS = 101;        //성공값
+
     GalleryImageAdapter galleryImageAdapter;        //어뎁터
 
     public static Frag4 newInstance() {
@@ -75,6 +82,9 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
                     case LOAD_SUCCESS:
                         mainactivity.galleryImageAdapter.notifyDataSetChanged();
+                        //thread.interrupt();
+                        //로그
+                        //Log.i("check", "쓰레드 종료");
                         break;
                 }
             }
@@ -85,17 +95,26 @@ public class Frag4 extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
 
         //픽사베이 http 통신을 위해서 thread 생성
-        new Thread(){
+        thread = new Thread(){
             public void run(){
-                ArrayList<String> test = default_pixa(1);
+                //로그
+                Log.i("check", "요청 페이지 :" + page_num);
+                ArrayList<String> test = default_pixa(page_num);
 
                 Bundle bun = new Bundle();
                 bun.putStringArrayList("PIXA_URL", test);
 
-                Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
-                mHandler.sendMessage(msg);
+                if(page_num == 1) {
+                    Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
+                    mHandler.sendMessage(msg);
+                }
+
             }
-        }.start();
+        };
+
+        //로그
+        Log.i("check", "스레드 시작");
+        thread.start();
     }
 
     /**************************************************/
@@ -108,6 +127,8 @@ public class Frag4 extends android.support.v4.app.Fragment {
         String API_KEY = "10343836-4aa4b118c22502ac110971841";     // api key 값
         int Page_num = page;        //페이지 값
         String url = "https://pixabay.com/api/?key=" + API_KEY + "&page=" + Page_num + "&image_type=photo&order=latest";      //검색 값
+        //로그
+        Log.i("check", url);
         BufferedReader reader = null;       //결과값을 읽기 위한 버퍼리더
         StringBuffer tmp = null;        //결과값을 임시 저장할 스트링버퍼
         String result = null;       //결과값을 임시 저장할 string 변수
@@ -160,8 +181,11 @@ public class Frag4 extends android.support.v4.app.Fragment {
             img_url_list_result.add(img_url_list.get(i));
         }
 
-        for(int i =0; i<10; i++){
-            images[i] = img_url_list_result.get(i);
+        images.clear();
+
+        for(int i =0; i<img_url_list_result.size(); i++){
+            images.add(img_url_list_result.get(i));
+            //images[i] = img_url_list_result.get(i);//수정
         }
 
         return img_url_list;
@@ -205,13 +229,61 @@ public class Frag4 extends android.support.v4.app.Fragment {
         };
 
         // this대신 getActivity 사용
-
         galleryImageAdapter = new GalleryImageAdapter(getActivity(), images, listener);
         recyclerView.setAdapter(galleryImageAdapter);
 
+        //하단 페이지 도착시 자료 갱신
+        //참고 : https://medium.com/@ydh0256/android-recyclerview-%EC%9D%98-%EC%B5%9C%EC%83%81%EB%8B%A8%EA%B3%BC-%EC%B5%9C%ED%95%98%EB%8B%A8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EA%B0%90%EC%A7%80%ED%95%98%EA%B8%B0-f0e5fda34301
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if(!recyclerView.canScrollVertically(-1)){
+                    //Log.i("check", "리스트 상단");
+                }
+                else if(!recyclerView.canScrollVertically(1)){
+                    Log.i("check", "리스트 하단");
+                    page_num+=1;
+
+                    thread = new Thread(){
+                        public void run(){
+                            //로그
+                            Log.i("check", "요청 페이지 :" + page_num);
+                            ArrayList<String> test = default_pixa(page_num);
+
+                            Bundle bun = new Bundle();
+                            bun.putStringArrayList("PIXA_URL", test);
+
+                            Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
+                            mHandler.sendMessage(msg);
+                        }
+                    };
+
+                    thread.start();
+
+                    //어뎁터를 추가로 다는 방법
+                    /*
+                    galleryImageAdapter = new GalleryImageAdapter(getActivity(), images, listener);
+                    recyclerView.setAdapter(galleryImageAdapter);
+                    */
+                }
+                else{
+                    //Log.i("check", "리스트 중간");
+                }
+            }
+        });
 
         return view;
 
+    }
+
+    //화면이 회전되면 adapter 갱신
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        this.galleryImageAdapter.notifyDataSetChanged();
     }
 }
 

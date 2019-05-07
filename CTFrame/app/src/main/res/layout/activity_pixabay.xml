@@ -34,23 +34,18 @@
         android:layout_height="match_parent" />
 </LinearLayout>
 
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="end|bottom"
-    android:layout_margin="16dp"
-    android:clickable="true"
-    app:backgroundTint="@android:color/background_dark"
-    app:fabSize="mini"
-    app:srcCompat="@android:drawable/ic_menu_save" />
-
-<Button
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="More pics"
-    android:layout_gravity="center|bottom"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/ctframe_color"
+        android:clickable="true"
+        app:backgroundTint="@android:color/background_dark"
+        app:fabSize="mini"
+        app:rippleColor="@color/ctframe_color"
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
 
 </android.support.design.widget.CoordinatorLayout>

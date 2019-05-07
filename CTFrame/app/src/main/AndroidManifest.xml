@@ -15,8 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_Fullscreen"></activity>
-        <activity android:name=".Activity_Pixabay" >
+        <activity android:name=".Activity_Fullscreen"
+            android:configChanges="keyboardHidden|orientation"
+        >
+
+        </activity>
+        <activity android:name=".Activity_Pixabay"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
 
         </activity>
         <activity android:name=".Activity_Drive"></activity>

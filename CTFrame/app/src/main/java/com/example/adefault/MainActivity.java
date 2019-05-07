@@ -9,14 +9,14 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adefault.Adapters.GridViewAdapter;
 import com.example.adefault.Interfaces.SendDataToServer;
 
 import java.io.File;
@@ -32,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
 
-    FragmentManager fm;
-    FragmentTransaction tran;
-    Frag_ListView frag_listView;
+    GridView gridView;
+    int icons[] = {R.drawable.background, R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,
+            R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.background,R.drawable.background
+    ,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,
+            R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background
+    ,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,
+            R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -215,12 +219,8 @@ public class MainActivity extends AppCompatActivity {
     private void Init() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
-        //프레그먼트 생성 및 적용
-        frag_listView = new Frag_ListView();    //프레그 먼트 객체 생성
-        fm = getSupportFragmentManager();
-        tran = fm.beginTransaction();
-        tran.replace(R.id.frame_container, frag_listView);
-        tran.commit();
+        gridView = (GridView)findViewById(R.id.gridView);
+        gridView.setAdapter(new GridViewAdapter(this, icons));
     }
 
     //*******************************************************************************************/

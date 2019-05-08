@@ -6,13 +6,13 @@
     <string name="title_mygallery">MyGallery</string>
     <string name="StringValue">이미지가 열리지가 않습니다.</string>
 
-    <string name="by_category">By Category</string>
+    <string name="by_category">카테고리</string>
 
     <!-- Category name for places [CHAR LIMIT=20] -->
-    <string name="random">Random Pictures</string>
+    <string name="default_pixa">홈</string>
 
     <!-- Category name for food [CHAR LIMIT=20] -->
-    <string name="search">Search</string>
+    <string name="search">검색</string>
 
 
     <!-- Category name for nature [CHAR LIMIT=20] -->

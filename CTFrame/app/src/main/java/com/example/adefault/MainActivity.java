@@ -34,6 +34,9 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static String email = null;
+
     Uri photoUri,albumUri = null;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     ArrayList<String> imageArray = new ArrayList<>();
+
+    Intent intent;
 
     GridView gridView;
 
@@ -55,10 +60,12 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_mypage:
                     //mTextMessage.setText("Mypage");
+                    intent = new Intent(MainActivity.this, Activity_MyPage.class);
+                    startActivity(intent);
                     break;
                 case R.id.navigation_pixabay:
                     //mTextMessage.setText(R.string.title_pixabay);
-                    Intent intent = new Intent(MainActivity.this, Activity_Pixabay.class);
+                    intent = new Intent(MainActivity.this, Activity_Pixabay.class);
                     startActivity(intent);
                     break;
                 case R.id.navigation_googledrive:
@@ -225,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void Init() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-
         //gridView = (GridView)findViewById(R.id.gridView);
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -251,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //gridView.setAdapter(new GridViewAdapter(this, imageArray));
+
     }
 
     //*******************************************************************************************/

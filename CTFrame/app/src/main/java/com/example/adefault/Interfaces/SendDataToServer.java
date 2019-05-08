@@ -188,8 +188,6 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
                 Log.i("CTFrame", "HTTP Response is : "
                         + serverResponseMessage + ": " + serverResponseCode);
 
-
-
                 //close the streams //
                 fileInputStream.close();
                 dos.flush();

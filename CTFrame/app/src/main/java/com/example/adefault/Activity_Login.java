@@ -48,6 +48,7 @@ public class Activity_Login extends AppCompatActivity {
                     //로그인 성공
                     Toast.makeText(Activity_Login.this,"로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent( Activity_Login.this , MainActivity.class);
+
                     startActivity( intent );
                 }
                 else if(responseMsg == 2 )

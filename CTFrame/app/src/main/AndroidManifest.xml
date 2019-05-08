@@ -37,7 +37,7 @@
         <!-- android:windowSoftInputMode="adjustNothing"은 키보드가 레이아웃에 영향을 주지 않는다는 코드이다-->
         <activity android:name=".Activity_Login"
             android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
 
         </activity>
 

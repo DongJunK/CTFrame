@@ -10,17 +10,28 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adefault.Adapters.GalleryImageAdapter;
 import com.example.adefault.Adapters.GridViewAdapter;
+import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.Interfaces.SendDataToServer;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Uri photoUri,albumUri = null;
@@ -31,14 +42,10 @@ public class MainActivity extends AppCompatActivity {
     String loginId = "osb1808@nate.com";
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
+    ArrayList<String> imageArray = new ArrayList<>();
 
     GridView gridView;
-    int icons[] = {R.drawable.background, R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,
-            R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.background,R.drawable.background
-    ,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,
-            R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background
-    ,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,
-            R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background};
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -219,8 +226,32 @@ public class MainActivity extends AppCompatActivity {
     private void Init() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
-        gridView = (GridView)findViewById(R.id.gridView);
-        gridView.setAdapter(new GridViewAdapter(this, icons));
+        //gridView = (GridView)findViewById(R.id.gridView);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        image_list_view();
+
+        final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //open full screen activity with omage clicked
+                Intent i = new Intent(MainActivity.this, Activity_Fullscreen.class);
+                i.putExtra("IMAGES", imageArray);
+                i.putExtra("POSITION", position);
+                startActivity(i);
+            }
+        };
+
+        // this대신 getActivity 사용
+        GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(this, imageArray, listener);
+        recyclerView.setAdapter(galleryImageAdapter);
+
+
+
+        //gridView.setAdapter(new GridViewAdapter(this, imageArray));
     }
 
     //*******************************************************************************************/
@@ -284,4 +315,62 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, msg,
                 Toast.LENGTH_SHORT).show();
     }
+
+    //*******************************************************************************************/
+    // List View
+    //*******************************************************************************************/
+    void image_list_view()
+    {
+        //section 0 여기 건들지마
+        JSONObject obj = new JSONObject();
+        SendDataToServer sendDataToServer = new SendDataToServer();
+        //section 0 여기 건들지마
+
+        //section 2 여기는 고치치마라//
+        JSONObject post_dict = new JSONObject();
+        //section 2 여기 까지//
+
+        //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
+        try {
+            post_dict.put("email" , loginId);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //section 3 여기까지//
+
+        if (post_dict.length() > 0) {
+            try
+            {
+                //section 4   "signUpCheck 라고 되어있는 부분을 승배가 준 파일로 고쳐서 보낼것 //
+                obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict),"list_view").get());
+                Log.i("CTFrame","여기까지");
+                //section 4//
+
+                try
+                {
+                    JSONArray imgArray = obj.getJSONArray("responseMsg");
+                    for(int i=0;i<imgArray.length();i++)
+                    {
+                        JSONObject tempobj = imgArray.getJSONObject(i);
+                        String picURL = tempobj.getString("pic");
+                        imageArray.add("http://"+picURL);
+                    }
+                }
+                catch (JSONException e)
+                {
+                    Log.i("CTFrame", "JSONError : " + e.toString());
+                }
+            }
+            catch (Exception e)
+            {
+                Log.i("CTFrame",e.toString());
+            }
+        }
+
+    }
+    //*******************************************************************************************/
+    //
+    //*******************************************************************************************/
+
 }

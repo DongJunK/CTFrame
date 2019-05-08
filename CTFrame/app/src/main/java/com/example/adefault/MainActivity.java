@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static String email = null;
+
     Uri photoUri,albumUri = null;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     String loginId = "osb1808@nate.com";
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
+
+    Intent intent;
 
     GridView gridView;
     int icons[] = {R.drawable.background, R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,R.drawable.ic_home_black_24dp,
@@ -48,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_mypage:
                     //mTextMessage.setText("Mypage");
+                    intent = new Intent(MainActivity.this, Activity_MyPage.class);
+                    startActivity(intent);
                     break;
                 case R.id.navigation_pixabay:
                     //mTextMessage.setText(R.string.title_pixabay);
-                    Intent intent = new Intent(MainActivity.this, Activity_Pixabay.class);
+                    intent = new Intent(MainActivity.this, Activity_Pixabay.class);
                     startActivity(intent);
                     break;
                 case R.id.navigation_googledrive:
@@ -221,6 +228,10 @@ public class MainActivity extends AppCompatActivity {
 
         gridView = (GridView)findViewById(R.id.gridView);
         gridView.setAdapter(new GridViewAdapter(this, icons));
+
+        //로그인 페이지에서 로그인한 email정보를 받아온다 ( Mainactivity에서 public static 으로 저장한다)
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
     }
 
     //*******************************************************************************************/

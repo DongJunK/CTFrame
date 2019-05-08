@@ -22,17 +22,17 @@
         </activity>
         <activity android:name=".Activity_Pixabay"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
-
-        </activity>
-        <activity android:name=".Activity_Drive"></activity>
-        <activity android:name=".Activity_MyPage"></activity>
-        <activity android:name=".Activity_Signup"></activity>
-        <activity android:name=".Activiy_Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Activity_Drive"></activity>
+        <activity android:name=".Activity_MyPage"></activity>
+        <activity android:name=".Activity_Signup"></activity>
+        <activity android:name=".Activiy_Splash">
+
         </activity>
         <!-- android:windowSoftInputMode="adjustNothing"은 키보드가 레이아웃에 영향을 주지 않는다는 코드이다-->
         <activity android:name=".Activity_Login"

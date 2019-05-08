@@ -38,7 +38,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         // Generate title based on item position
         switch (position) {
             case 0:
-                return mContext.getString(R.string.random);
+                return mContext.getString(R.string.default_pixa);
             case 1:
                 return mContext.getString(R.string.by_category);
             case 2:
@@ -47,5 +47,4 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
 }

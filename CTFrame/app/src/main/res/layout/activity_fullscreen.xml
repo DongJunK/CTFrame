@@ -7,6 +7,12 @@
     android:fillViewport="true"
     tools:context=".Activity_Fullscreen">
 
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,4 +21,18 @@
         >
 
     </android.support.v4.view.ViewPager>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/ctframe_color"
+        android:clickable="true"
+        app:backgroundTint="@android:color/background_dark"
+        app:fabSize="mini"
+        app:rippleColor="@color/ctframe_color"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+</android.support.design.widget.CoordinatorLayout>
 </ScrollView>

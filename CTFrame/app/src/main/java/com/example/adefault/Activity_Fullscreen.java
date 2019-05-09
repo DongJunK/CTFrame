@@ -3,10 +3,14 @@ package com.example.adefault;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.example.adefault.Adapters.FullSizeAdapter;
 
@@ -24,6 +28,17 @@ public class Activity_Fullscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //저장 버튼 눌렀을때 동작
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.i("check", "버튼 눌림");
+                Snackbar.make(v, "서버 앨범에 저장 완료", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
+        });
 
         //세로 화면 고정
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -45,20 +60,24 @@ public class Activity_Fullscreen extends AppCompatActivity {
 
 
     //줌인 줌 아웃 기능 막음
+
     @Override
     public boolean onTouchEvent(MotionEvent ev){
 
         try{
             return super.onTouchEvent(ev);
         }catch (IllegalArgumentException e){
-
+            return false;
         }
-        return false;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        return true;
+        try{
+            return super.dispatchTouchEvent(ev);
+        }catch (Exception e){
+            return false;
+        }
     }
 
 

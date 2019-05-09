@@ -16,17 +16,6 @@ public class Activity_Pixabay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pixabay);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        //저장 버튼 눌렀을때 동작
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Saved succesfully to Main Album", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 

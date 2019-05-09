@@ -2,31 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adefault">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity_Fullscreen"
-            android:configChanges="keyboardHidden|orientation"
-        >
-
-        </activity>
-        <activity android:name=".Activity_Pixabay"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity_Pixabay_Category"></activity>
+        <activity
+            android:name=".Activity_Fullscreen"
+            android:configChanges="keyboardHidden|orientation"></activity>
+        <activity
+            android:name=".Activity_Pixabay"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
 
         </activity>
-        <activity android:name=".Activity_Drive"></activity>
-        <activity android:name=".Activity_MyPage"></activity>
-        <activity android:name=".Activity_Signup"></activity>
+        <activity android:name=".Activity_Drive" />
+        <activity android:name=".Activity_MyPage" />
+        <activity android:name=".Activity_Signup" />
         <activity android:name=".Activiy_Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +34,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- android:windowSoftInputMode="adjustNothing"은 키보드가 레이아웃에 영향을 주지 않는다는 코드이다-->
-        <activity android:name=".Activity_Login"
-            android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
 
-        </activity>
-
+        <!-- android:windowSoftInputMode="adjustNothing"은 키보드가 레이아웃에 영향을 주지 않는다는 코드이다 -->
+        <activity
+            android:name=".Activity_Login"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"></activity>
     </application>
 
 </manifest>

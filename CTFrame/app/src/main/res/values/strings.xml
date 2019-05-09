@@ -26,61 +26,64 @@
     <!-- Category name for places [CHAR LIMIT=20] -->
     <string name="category_places">Places</string>
 
-    <!-- Category name for food [CHAR LIMIT=20] -->
-    <string name="category_food">Food</string>
 
     <!-- Category name for nature [CHAR LIMIT=20] -->
     <string name="category_nature">Nature</string>
 
     <!-- Category name for weather -->
-    <string name="Architecture">Architecture/Buildings</string>
+    <string name="fashion">fashion</string>
 
     <!-- Category name for when to come -->
-    <string name="BeautyFashion">Beauty/Fashion</string>
+    <string name="nature">nature</string>
 
     <!-- Category name for dress code -->
-    <string name="BusinessFinance">Business/Finance</string>
-
-    <!-- Category name for ramadan -->
-    <string name="FoodDrink">Food/Drink</string>
+    <string name="sports">sports</string>
 
     <!-- Category name for alcohol -->
-    <string name="People">People</string>
+    <string name="People">people</string>
 
     <!-- Category name for prices -->
-    <string name="Nature_Landscapes">Nature/Landscapes</string>
+    <string name="backgrounds">backgrounds</string>
 
-    <string name="Backgrounds">Backgrounds</string>
+    <string name="Backgrounds">backgrounds</string>
 
-    <string name="Science">Science</string>
+    <string name="Science">science</string>
 
-    <string name="Education">Education</string>
+    <string name="Education">education</string>
 
-    <string name="Feelings">Feelings</string>
+    <string name="Feelings">feelings</string>
 
-    <string name="Religion">Religion</string>
+    <string name="Religion">religion</string>
 
-    <string name="Health">Health</string>
+    <string name="Health">health</string>
 
-    <string name="Places">Places</string>
+    <string name="Places">places</string>
 
-    <string name="Animals">Places</string>
+    <string name="Animals">places</string>
 
-    <string name="Industry">Industry</string>
+    <string name="Industry">industry</string>
 
-    <string name="Food">Food</string>
+    <string name="Food">food</string>
 
-    <string name="Computer">Computer</string>
+    <string name="science">science</string>
 
-    <string name="Sports">Sports</string>
+    <string name="education">education</string>
 
-    <string name="Transportation">Transportation</string>
+    <string name="business">business</string>
 
-    <string name="Travel">Travel</string>
+    <string name="buildings">buildings</string>
 
-    <string name="Buildings">Buildings</string>
+    <string name="Computer">computer</string>
 
-    <string name="Music">Music</string>
+    <string name="Sports">sports</string>
+
+    <string name="Transportation">transportation</string>
+
+    <string name="Travel">travel</string>
+
+    <string name="Buildings">buildings</string>
+
+    <string name="Music">music</string>
 
     <!-- TODO DELETE ME -->
     <string name="checkin">Checkin</string>

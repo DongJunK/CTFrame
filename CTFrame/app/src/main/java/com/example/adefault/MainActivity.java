@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 //open full screen activity with omage clicked
-                Intent i = new Intent(MainActivity.this, Activity_Fullscreen.class);
+                Intent i = new Intent(MainActivity.this, Activity_Fullscreen_mainpage.class);
                 i.putExtra("IMAGES", imageArray);
                 i.putExtra("POSITION", position);
                 startActivity(i);

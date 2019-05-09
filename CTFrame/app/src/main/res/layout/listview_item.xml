@@ -10,5 +10,5 @@
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/background"/>
+        android:src="@drawable/backgrounds"/>
 </RelativeLayout>

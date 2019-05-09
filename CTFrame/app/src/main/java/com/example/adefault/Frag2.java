@@ -35,10 +35,10 @@ public class Frag2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_frag2, container, false);
         // Create an ArrayList of Category objects
         final ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category(getString(R.string.fashion), R.drawable.architecture));
-        categories.add(new Category(getString(R.string.nature), R.drawable.beauty_fashion));
-        categories.add(new Category(getString(R.string.backgrounds), R.drawable.nature_landscapes));
-        categories.add(new Category(getString(R.string.science), R.drawable.scinec));
+        categories.add(new Category(getString(R.string.fashion), R.drawable.fashion));
+        categories.add(new Category(getString(R.string.nature), R.drawable.nature));
+        categories.add(new Category(getString(R.string.Backgrounds),R.drawable.back_grounds));
+        categories.add(new Category(getString(R.string.science), R.drawable.science));
         categories.add(new Category(getString(R.string.education), R.drawable.euducation));
         categories.add(new Category(getString(R.string.People), R.drawable.people));
         categories.add(new Category(getString(R.string.Feelings), R.drawable.feelings));
@@ -52,7 +52,7 @@ public class Frag2 extends Fragment {
         categories.add(new Category(getString(R.string.sports), R.drawable.sports));
         categories.add(new Category(getString(R.string.Transportation), R.drawable.transportation));
         categories.add(new Category(getString(R.string.Travel), R.drawable.travel));
-        categories.add(new Category(getString(R.string.buildings), R.drawable.travel));
+        categories.add(new Category(getString(R.string.Buildings), R.drawable.buildings));
         categories.add(new Category(getString(R.string.Music), R.drawable.music));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(getActivity(), categories);
@@ -74,9 +74,12 @@ public class Frag2 extends Fragment {
                 intent.putExtra("category", val);
                 startActivity(intent);
 
-                /*
+
 
                 if(listView.getAdapter().getItem(position) == "Fashion"){
+                    intent = new Intent(getActivity(), Activity_Pixabay_Category.class);
+                    intent.putExtra("category", "nature");
+                    startActivity(intent);
 
                 }else if(listView.getAdapter().getItem(position) == "Nature"){
                     intent = new Intent(getActivity(), Activity_Pixabay_Category.class);
@@ -127,7 +130,7 @@ public class Frag2 extends Fragment {
                     intent.putExtra("category", "fashion");
                     startActivity(intent);
                 }
-                */
+
 
             }
         });

@@ -43,7 +43,6 @@
     <string name="People">people</string>
 
     <!-- Category name for prices -->
-    <string name="backgrounds">backgrounds</string>
 
     <string name="Backgrounds">backgrounds</string>
 
@@ -59,7 +58,7 @@
 
     <string name="Places">places</string>
 
-    <string name="Animals">places</string>
+    <string name="Animals">animals</string>
 
     <string name="Industry">industry</string>
 

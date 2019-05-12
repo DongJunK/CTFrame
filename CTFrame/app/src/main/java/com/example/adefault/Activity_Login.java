@@ -72,14 +72,10 @@ public class Activity_Login extends AppCompatActivity {
 
     public void LoginCheck(View v)
     {
-        //section 0 여기 건들지마
         JSONObject obj = new JSONObject();
         SendDataToServer sendDataToServer = new SendDataToServer();
-        //section 0 여기 건들지마
 
-        //section 2 여기는 고치치마라//
         JSONObject post_dict = new JSONObject();
-        //section 2 여기 까지//
 
         //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
         try {

@@ -74,6 +74,7 @@ public class Activity_Signup extends AppCompatActivity {
                         btn_email_code.setEnabled(false);
 
                         isEmailCheck = true;
+                        Toast.makeText(Activity_Signup.this, "이메일 인증을 완료하였습니다.", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {

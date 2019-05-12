@@ -136,6 +136,8 @@ public class Frag4 extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        page_num =1;
+
         //픽사베이 http 통신을 위해서 thread 생성
         thread = new Thread(){
             public void run(){
@@ -210,6 +212,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
             }
         }
         catch (Exception e){
+            default_pixa(page);
             //로그
             Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
         }

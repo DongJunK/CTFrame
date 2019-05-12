@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                             if(serverResponseCode == 200){
                                 runOnUiThread(new Runnable() {
                                     public void run() {
-                                        msgToast("적용되었습니다.");
+                                        msgToast("서버 저장 완료");
                                     }
                                 });
                             }

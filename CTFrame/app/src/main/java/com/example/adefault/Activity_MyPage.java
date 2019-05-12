@@ -29,7 +29,7 @@ public class Activity_MyPage extends AppCompatActivity {
 
         MyPageRequest();
 
-        edt_email.setText(MainActivity.email);
+        edt_email.setText(MainActivity.loginId);
         edt_name.setText(name);
 
     }
@@ -47,7 +47,7 @@ public class Activity_MyPage extends AppCompatActivity {
 
         //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
         try {
-            post_dict.put("email" , MainActivity.email);
+            post_dict.put("email" , MainActivity.loginId);
 
         } catch (JSONException e) {
             e.printStackTrace();

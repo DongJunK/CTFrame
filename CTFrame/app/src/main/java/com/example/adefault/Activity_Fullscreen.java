@@ -53,7 +53,7 @@ public class Activity_Fullscreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("check", "버튼 눌림");
-                email = MainActivity.email;
+                email = MainActivity.loginId;
 
                 Log.i("check", email);
                 url = images.get(position).get_url();

@@ -36,14 +36,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String email = null;
+    public static String loginId = null;
 
     Uri photoUri,albumUri = null;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
     final int REQUEST_DRIVE = 3;
     String mCurrentPhotoPath;
-    String loginId = "osb1808@nate.com";
+    //String loginId = "null";
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     ArrayList<String> imageArray = new ArrayList<>();
@@ -87,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Init();
 
         Intent intent = getIntent();
 
         //로그인 정보 가져오기
-        MainActivity.email = intent.getStringExtra("email");
+        MainActivity.loginId = intent.getStringExtra("email");
+        Init();
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

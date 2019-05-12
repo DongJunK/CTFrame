@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Init();
 
+        Intent intent = getIntent();
+
+        //로그인 정보 가져오기
+        MainActivity.email = intent.getStringExtra("email");
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

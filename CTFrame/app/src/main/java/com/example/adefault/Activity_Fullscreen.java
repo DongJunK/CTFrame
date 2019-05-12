@@ -13,6 +13,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.adefault.Adapters.FullSizeAdapter;
+import com.example.adefault.Interfaces.SendDataToServer;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,6 +25,7 @@ public class Activity_Fullscreen extends AppCompatActivity {
     //수정 String[] images;
     ArrayList<Frag4.pic_info> images;
     int position;
+    String email, url, tag;
 
     FullSizeAdapter fullSizeAdapter;
 
@@ -43,16 +48,22 @@ public class Activity_Fullscreen extends AppCompatActivity {
             position = i.getIntExtra("POSITION",0);
         }
 
-        //저장 버튼 눌렀을때 동작
+        /**** 저장 버튼 눌렀을때 동작 ****/
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Log.i("check", "버튼 눌림");
-                String url = images.get(position).get_url();
-                String tag = images.get(position).get_tag();
+                email = MainActivity.email;
+
+                Log.i("check", email);
+                url = images.get(position).get_url();
+                tag = images.get(position).get_tag();
 
                 Log.i("저장 URL check", url);
                 Log.i("저장 TAG check", tag);
+
+                //다운로드 php함수 호출
+                DownLoadPixa(v);
 
                 Snackbar.make(v, "서버 앨범에 저장 완료", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
@@ -113,5 +124,40 @@ public class Activity_Fullscreen extends AppCompatActivity {
         }
     }
 
+    public void DownLoadPixa(View v)
+    {
+        //section 0 여기 건들지마
+        JSONObject obj = new JSONObject();
+        SendDataToServer sendDataToServer = new SendDataToServer();
+        //section 0 여기 건들지마
+
+        //section 2 여기는 고치치마라//
+        JSONObject post_dict = new JSONObject();
+        //section 2 여기 까지//
+
+        //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
+        try {
+            post_dict.put("email" , email);
+            post_dict.put("url" , url);
+            post_dict.put("tag" , tag);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //section 3 여기까지//
+
+        if (post_dict.length() > 0) {
+            try
+            {
+                //section 4   "signUpCheck 라고 되어있는 부분을 승배가 준 파일로 고쳐서 보낼것 //
+                obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict),"upload_pixa_pic").get());
+                //section 4//
+            }
+            catch (Exception e)
+            {
+                Log.i("Exception",e.toString());
+            }
+        }
+    }
 
 }

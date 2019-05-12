@@ -22,7 +22,9 @@
             android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name=".Activity_Pixabay"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"></activity>
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
+
+        </activity>
         <activity android:name=".Activity_Drive" />
         <activity android:name=".Activity_MyPage" />
         <activity android:name=".Activity_Signup" />

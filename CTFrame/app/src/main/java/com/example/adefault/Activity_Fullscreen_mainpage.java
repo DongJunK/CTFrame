@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 
 import com.example.adefault.Adapters.FullSizeAdapter;
+import com.example.adefault.Adapters.FullSizeAdapter_mainpage;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class Activity_Fullscreen_mainpage extends AppCompatActivity {
     ArrayList<String> images;
     int position;
 
-    FullSizeAdapter fullSizeAdapter;
+    FullSizeAdapter_mainpage fullSizeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class Activity_Fullscreen_mainpage extends AppCompatActivity {
 
         viewPager = (ViewPager)findViewById(R.id.viewpager);
 
-        fullSizeAdapter = new FullSizeAdapter(this,images);
+        fullSizeAdapter = new FullSizeAdapter_mainpage(this,images);
         viewPager.setAdapter(fullSizeAdapter);
         viewPager.setCurrentItem(position,true);
     }

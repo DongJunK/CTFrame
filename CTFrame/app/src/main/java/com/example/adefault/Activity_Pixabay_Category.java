@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -40,7 +41,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
     ArrayList<String> img_user_list = new ArrayList<>();    //이미지 user를 저장할 array list
     ArrayList<String> img_like_list = new ArrayList<>();    //이미지 like를 저장할  array list
 
-    final ArrayList<String> images = new ArrayList<>();
+    final ArrayList<Frag4.pic_info> images = new ArrayList<>();
 
     private final Activity_Pixabay_Category.MyHandler mHandler = new Activity_Pixabay_Category.MyHandler(Activity_Pixabay_Category.this);
 
@@ -138,8 +139,12 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
         images.clear();
 
         for(int i =0; i<img_url_list_result.size(); i++){
-            images.add(img_url_list_result.get(i));
-            //images[i] = img_url_list_result.get(i);//수정
+            //images ArrayList에 클래스 넣고
+            images.add(new Frag4.pic_info());
+            //이미지 주소 넣고
+            images.get(i).set_url(img_url_list_result.get(i));
+            //이미지 태그 넣고
+            images.get(i).set_tag(img_tag_list.get(i));
         }
 
         return img_url_list;
@@ -185,7 +190,16 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
             public void onClick(View view, int position) {
                 //open full screen activity with omage clicked
                 Intent i = new Intent(Activity_Pixabay_Category.this, Activity_Fullscreen.class);
-                i.putExtra("IMAGES", images);
+
+                /***************************************************/
+                /** 클래스를 보내기 위해서는 Bundle을 통해서 통신 **/
+                /***************************************************/
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("PIC_INFO", images);
+
+                //번들을 intent에 넣어서 보냄
+                i.putExtras(bundle);
+
                 i.putExtra("POSITION", position);
                 startActivity(i);
             }

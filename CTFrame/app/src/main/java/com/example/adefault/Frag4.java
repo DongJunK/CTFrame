@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,10 +29,12 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -49,14 +52,53 @@ public class Frag4 extends android.support.v4.app.Fragment {
     ArrayList<String> img_like_list = new ArrayList<>();    //이미지 like를 저장할  array list
 
     //final String[] images = new String[20];     //출력할 사진 갯수//수정
-    final ArrayList<String> images = new ArrayList<>();
+    final ArrayList<Frag4.pic_info> images = new ArrayList<>();
     public static  final int LOAD_SUCCESS = 101;        //성공값
 
     GalleryImageAdapter galleryImageAdapter;        //어뎁터
 
-    public static Frag4 newInstance() {
-        Frag4 fragment = new Frag4();
-        return fragment;
+    //생성자 다른 클래스에서 호출 가능하도록
+    public Frag4()
+    {    }
+
+    /************************************************************************/
+    /******************* 사진 정보를 담을 클래스 ****************************/
+    /******************* 정보 : 이미지 url, tag 값 **************************/
+    /******************* 함수 : 생성자, set_tag, get_url, get_tag ***********/
+    /************************************************************************/
+    @SuppressWarnings("serial")
+    public static class pic_info implements Serializable {
+        String url = "";
+        String tag = "";
+
+        //생성자
+        public pic_info()
+        {
+        }
+
+        //url를 넣는 함수
+        public void set_url(String url)
+        {
+            this.url = url;
+        }
+
+        //tag 값을 넣는 함수
+        public void set_tag(String tag)
+        {
+            this.tag = tag;
+        }
+
+        //url를 반환 하는 함수
+        public String get_url()
+        {
+            return this.url;
+        }
+
+        //tag를 반환 하는 함수
+        public String get_tag()
+        {
+            return this.tag;
+        }
     }
 
     private int[] images_id = {R.drawable.pix1, R.drawable.pix2, R.drawable.pix3, R.drawable.pix4, R.drawable.pix5, R.drawable.pix6,
@@ -101,8 +143,8 @@ public class Frag4 extends android.support.v4.app.Fragment {
                 Log.i("check", "요청 페이지 :" + page_num);
                 ArrayList<String> test = default_pixa(page_num);
 
-                Bundle bun = new Bundle();
-                bun.putStringArrayList("PIXA_URL", test);
+                //Bundle bun = new Bundle();
+                //bun.putStringArrayList("PIXA_URL", test);
 
                 if(page_num == 1) {
                     Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
@@ -160,14 +202,10 @@ public class Frag4 extends android.support.v4.app.Fragment {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String img_url = jsonObject.getString("webformatURL");      //이미지 url
                 String img_tag = jsonObject.getString("tags");      //이미지 tag
-                String img_user = jsonObject.getString("user");     //이미지 올린 사람
-                String img_like = jsonObject.getString("likes");        //이미지 좋아요 횟수
 
                 //array list에 저쟝
                 img_url_list.add(img_url);
                 img_tag_list.add(img_tag);
-                img_user_list.add(img_user);
-                img_like_list.add(img_like);
 
             }
         }
@@ -183,10 +221,19 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
         images.clear();
 
+        /***********************************************************/
+        //최종 출력할 이미지 ArrayList에 값을 넣어줌
         for(int i =0; i<img_url_list_result.size(); i++){
-            images.add(img_url_list_result.get(i));
-            //images[i] = img_url_list_result.get(i);//수정
+            //images ArrayList에 클래스 넣고
+            images.add(new pic_info());
+            //이미지 주소 넣고
+            images.get(i).set_url(img_url_list_result.get(i));
+            //이미지 태그 넣고
+            images.get(i).set_tag(img_tag_list.get(i));
+
+            //images.add(img_url_list_result.get(i));
         }
+        /***********************************************************/
 
         return img_url_list;
     }
@@ -200,29 +247,21 @@ public class Frag4 extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-
-        //final String[] images = new String[10];
-        /*
-        Random random = new Random();
-
-
-        for (int i = 0; i < images.length; i++)
-            //https://pixabay.com/images/search/
-            //이미지 배열에 픽사베이에서 가져온 사진 들고 오기
-            images[i] = "https://picsum.photos/600?image=" + random.nextInt(1000 + 1);
-        */
-
-        /*
-        for(int i =0; i<10; i++){
-            images[i] = img_url_list_result.get(i);
-        }
-        */
+        //FullScreen 엑티비티 실행 , 저장 실행 되는곳
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 //open full screen activity with omage clicked
                 Intent i = new Intent(getContext(), Activity_Fullscreen.class);
-                i.putExtra("IMAGES", images);
+                /***************************************************/
+                /** 클래스를 보내기 위해서는 Bundle을 통해서 통신 **/
+                /***************************************************/
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("PIC_INFO", images);
+
+                //번들을 intent에 넣어서 보냄
+                i.putExtras(bundle);
+                //i.putExtra("IMAGES", images);
                 i.putExtra("POSITION", position);
                 startActivity(i);
             }

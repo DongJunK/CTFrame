@@ -26,10 +26,10 @@ import java.util.ArrayList;
  * Created by Lirvess on 2019-05-02.
  */
 
-public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapter.ImageViewHolder> {
+public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryImageAdapter_mainpage.ImageViewHolder> {
 
     Context context;
-    ArrayList<Frag4.pic_info> List;     //이미지 정보 가지고 있는 ArrayList
+    ArrayList<String> List;     //이미지 정보 가지고 있는 ArrayList
     //String[] List; //수정
     IRecyclerViewClickListener clickListener;
 
@@ -40,7 +40,7 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
         this.clickListener = clickListener;
     }
      */
-    public  GalleryImageAdapter(Context context, ArrayList<Frag4.pic_info> List, IRecyclerViewClickListener clickListener){
+    public GalleryImageAdapter_mainpage(Context context, ArrayList<String> List, IRecyclerViewClickListener clickListener){
         this.context = context;
         this.List = List;
         this.clickListener = clickListener;
@@ -55,7 +55,7 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         //String currentImage = List[position];  //수정
-        String currentImage = List.get(position).get_url();     //이미지 주소 가지고 오고
+        String currentImage = List.get(position);     //이미지 주소 가지고 오고
         ImageView imageView = holder.imageView;
         final ProgressBar progressBar = holder.progressBar;
 

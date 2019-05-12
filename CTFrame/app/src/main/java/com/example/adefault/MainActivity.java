@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adefault.Adapters.GalleryImageAdapter;
+import com.example.adefault.Adapters.GalleryImageAdapter_mainpage;
 import com.example.adefault.Adapters.GridViewAdapter;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.Interfaces.SendDataToServer;
@@ -252,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // this대신 getActivity 사용
-        GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(this, imageArray, listener);
+        GalleryImageAdapter_mainpage galleryImageAdapter = new GalleryImageAdapter_mainpage(this, imageArray, listener);
         recyclerView.setAdapter(galleryImageAdapter);
 
 
@@ -287,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
         cropIntent.putExtra("aspectY", 9);       //y축 비율
 
         cropIntent.putExtra("scale", true);
+
         cropIntent.putExtra("output", albumUri);
         startActivityForResult(cropIntent, REQUEST_CROP_IMAGE);
 

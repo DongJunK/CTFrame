@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Desert Experience"
+        android:text="Category Name"
         android:fontFamily="sans-serif-light"
         android:layout_marginTop="40dp"
         android:textAlignment="center"

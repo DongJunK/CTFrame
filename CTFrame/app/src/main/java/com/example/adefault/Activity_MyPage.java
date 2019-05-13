@@ -1,10 +1,13 @@
 package com.example.adefault;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.adefault.Interfaces.SendDataToServer;
 
@@ -15,6 +18,7 @@ public class Activity_MyPage extends AppCompatActivity {
 
     EditText edt_email, edt_name, edt_favorite, edt_password;
     String name, favorite;
+    Button btn_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +30,22 @@ public class Activity_MyPage extends AppCompatActivity {
         edt_name = (EditText)findViewById(R.id.edt_name);
         edt_favorite = (EditText)findViewById(R.id.edt_favorite);
         edt_password = (EditText)findViewById(R.id.edt_password);
-
+        btn_logout = (Button)findViewById(R.id.btn_logout);
         MyPageRequest();
 
         edt_email.setText(MainActivity.loginId);
         edt_name.setText(name);
 
+
+        //로그아웃
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( Activity_MyPage.this , Activity_Login.class);
+                startActivity( intent );
+                Toast.makeText(Activity_MyPage.this,"로그아웃 되었습니다 .", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void MyPageRequest()

@@ -1,8 +1,14 @@
-package com.example.adefault;
+package com.example.adefault.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.adefault.Frag1;
+import com.example.adefault.Frag2;
+import com.example.adefault.Frag3;
+import com.example.adefault.Frag4;
+import com.example.adefault.R;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 

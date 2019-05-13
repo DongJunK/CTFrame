@@ -1,4 +1,4 @@
-package com.example.adefault;
+package com.example.adefault.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.adefault.Category;
+import com.example.adefault.R;
 
 import java.util.ArrayList;
 

@@ -197,6 +197,11 @@ public class Frag3 extends Fragment {
                 i.putExtra("POSITION", position);
                 startActivity(i);
             }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
         };
 
         galleryImageAdapter = new GalleryImageAdapter(getActivity(), images, listener);

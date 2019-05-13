@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static String email = null;
-
+    boolean selectionMode = false;
     Uri photoUri,albumUri = null;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
@@ -242,12 +242,31 @@ public class MainActivity extends AppCompatActivity {
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                //open full screen activity with omage clicked
-                Intent i = new Intent(MainActivity.this, Activity_Fullscreen_mainpage.class);
-                i.putExtra("IMAGES", imageArray);
-                i.putExtra("POSITION", position);
-                startActivity(i);
+
+                if(selectionMode)
+                {
+                    //해당 사진 id ArrayList 추가 + 하이라이트
+
+                    //
+                }else{
+                    //open full screen activity with omage clicked
+                    Intent i = new Intent(MainActivity.this, Activity_Fullscreen_mainpage.class);
+                    i.putExtra("IMAGES", imageArray);
+                    i.putExtra("POSITION", position);
+                    startActivity(i);
+                }
+
             }
+            @Override
+            public void onLongClick(View view, int position){
+                if(!selectionMode) {
+                    selectionMode = true;
+                    //해당 사진 id ArrayList 추가 + 하이라이트
+
+                    //
+                }
+            }
+
         };
 
         // this대신 getActivity 사용

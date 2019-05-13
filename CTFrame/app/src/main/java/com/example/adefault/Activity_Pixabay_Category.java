@@ -203,6 +203,11 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
                 i.putExtra("POSITION", position);
                 startActivity(i);
             }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
         };
 
         galleryImageAdapter = new GalleryImageAdapter(Activity_Pixabay_Category.this, images, listener);

@@ -1,6 +1,7 @@
 package com.example.adefault.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -44,6 +45,7 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
         this.context = context;
         this.List = List;
         this.clickListener = clickListener;
+
     }
 
     @Override
@@ -58,6 +60,8 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
         String currentImage = List.get(position);     //이미지 주소 가지고 오고
         ImageView imageView = holder.imageView;
         final ProgressBar progressBar = holder.progressBar;
+
+        holder.imageView.setColorFilter(Color.argb(140,0,0,255));
 
         Glide.with(context).load(currentImage)
                 .listener(new RequestListener<Drawable>() {
@@ -75,13 +79,18 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         //return List.length; //수정
         return List.size();
 
     }
 
-    public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         ImageView imageView;
         ProgressBar progressBar;
 
@@ -95,6 +104,12 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
         @Override
         public void onClick(View v){
             clickListener.onClick(v,getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            clickListener.onLongClick(v,getAdapterPosition());
+            return true;
         }
     }
 }

@@ -265,6 +265,11 @@ public class Frag4 extends android.support.v4.app.Fragment {
                 i.putExtra("POSITION", position);
                 startActivity(i);
             }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
         };
 
         // this대신 getActivity 사용

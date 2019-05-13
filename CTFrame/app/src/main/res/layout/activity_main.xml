@@ -9,9 +9,37 @@
     android:fillViewport="true"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/small_logo"
+        android:layout_width="246dp"
+        android:layout_height="53dp"
+        android:src="@drawable/title"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/btn_cancel"
+        android:layout_width="41dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+        app:srcCompat="@drawable/main_cancel_icon"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteY="15dp" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="44dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/main_delete_icon"
+        tools:layout_editor_absoluteY="15dp" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/small_logo">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -19,21 +47,23 @@
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     </ScrollView>
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            app:itemHorizontalTranslationEnabled="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container"
-            app:layout_constraintVertical_bias="1.0"
-            app:menu="@menu/navigation" />
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemHorizontalTranslationEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/navigation" />
 
 
 </android.support.constraint.ConstraintLayout>

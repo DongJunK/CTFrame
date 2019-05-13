@@ -1,23 +1,19 @@
 package com.example.adefault;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.adefault.Adapters.GalleryImageAdapter;
 
@@ -27,16 +23,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.sql.Struct;
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class Frag4 extends android.support.v4.app.Fragment {
@@ -250,7 +242,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         //FullScreen 엑티비티 실행 , 저장 실행 되는곳
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, int position, ImageView imageView) {
                 //open full screen activity with omage clicked
                 Intent i = new Intent(getContext(), Activity_Fullscreen.class);
                 /***************************************************/
@@ -267,7 +259,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
             }
 
             @Override
-            public void onLongClick(View view, int position) {
+            public void onLongClick(View view, int position, ImageView imageView) {
 
             }
         };

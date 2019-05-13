@@ -2,6 +2,7 @@ package com.example.adefault;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,12 +17,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.adefault.Adapters.GalleryImageAdapter;
 import com.example.adefault.Adapters.GalleryImageAdapter_mainpage;
-import com.example.adefault.Adapters.GridViewAdapter;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.Interfaces.SendDataToServer;
 
@@ -31,14 +31,13 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static String email = null;
-    boolean selectionMode = false;
     Uri photoUri,albumUri = null;
+    boolean selectMode = false;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
     final int REQUEST_DRIVE = 3;
@@ -47,8 +46,13 @@ public class MainActivity extends AppCompatActivity {
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     ArrayList<String> imageArray = new ArrayList<>();
+    ArrayList<String> deleteImageArray = new ArrayList<>();
     RecyclerView recyclerView;
+    GalleryImageAdapter_mainpage galleryImageAdapter;
+
     Intent intent;
+    ImageView btn_cancel,btn_delete;
+    ArrayList<ImageView> imageViews = new ArrayList<>();
 
     GridView gridView;
 
@@ -88,7 +92,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Init();
+        btn_cancel = (ImageView)findViewById(R.id.btn_cancel);
+        btn_delete = (ImageView)findViewById(R.id.btn_delete);
+        btn_cancel.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                btn_cancel.setVisibility(View.INVISIBLE);
+                btn_delete.setVisibility(View.INVISIBLE);
+                selectMode = false;
+                deleteImageArray.clear();
+                imageView_all_clear_filter();
+
+            }
+        });
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView_all_clear_filter();
+                btn_cancel.setVisibility(View.INVISIBLE);
+                btn_delete.setVisibility(View.INVISIBLE);
+
+                for(int i=0;i<deleteImageArray.size();++i)
+                {
+                    Log.i("CTFrame",deleteImageArray.get(i));
+                }
+                int success = send_to_server_delete_image();
+                galleryImageAdapter.notifyDataSetChanged();
+
+                Log.i("CTFrame",String.valueOf(success));
+                selectMode = false;
+            }
+        });
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -240,15 +275,36 @@ public class MainActivity extends AppCompatActivity {
         image_list_view();
 
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
+
+
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, int position, ImageView imageView) {
 
-                if(selectionMode)
+                if(selectMode)
                 {
-                    //해당 사진 id ArrayList 추가 + 하이라이트
 
-                    //
-                }else{
+                    try{
+                        Log.i("CTFrame",imageView.getColorFilter().toString());
+                        imageView.clearColorFilter();
+                        for(int i=0;i<deleteImageArray.size();++i)
+                        {
+                            if(deleteImageArray.get(i).equals(imageArray.get(position)))
+                            {
+                                deleteImageArray.remove(i);
+                            }
+                        }
+                    }catch (Exception e){
+                        imageView.setColorFilter(Color.argb(140,0,0,255));
+                        deleteImageArray.add(imageArray.get(position));
+                        if(!imageViews.contains(imageView)){
+                            imageViews.add(imageView);
+                        }
+
+                    }
+
+                }
+                else
+                {
                     //open full screen activity with omage clicked
                     Intent i = new Intent(MainActivity.this, Activity_Fullscreen_mainpage.class);
                     i.putExtra("IMAGES", imageArray);
@@ -258,19 +314,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
             @Override
-            public void onLongClick(View view, int position){
-                if(!selectionMode) {
-                    selectionMode = true;
-                    //해당 사진 id ArrayList 추가 + 하이라이트
-
-                    //
-                }
+            public void onLongClick(View view, int position, ImageView imageView){
+                selectMode = true;
+                btn_cancel.setVisibility(View.VISIBLE);
+                btn_delete.setVisibility(View.VISIBLE);
+                imageViews.add(imageView);
+                deleteImageArray.add(imageArray.get(position));
             }
 
         };
 
         // this대신 getActivity 사용
-        GalleryImageAdapter_mainpage galleryImageAdapter = new GalleryImageAdapter_mainpage(this, imageArray, listener);
+        galleryImageAdapter = new GalleryImageAdapter_mainpage(this, imageArray, listener);
         recyclerView.setAdapter(galleryImageAdapter);
     }
 
@@ -385,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
     //*******************************************************************************************/
     // Delete_image_to_server Function
     //*******************************************************************************************/
-    int send_to_server_delete_image(ArrayList<String> delete_image_list)
+    int send_to_server_delete_image()
     {
         int responseMsg=0;
         JSONObject obj = new JSONObject();
@@ -395,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             post_dict.put("email", loginId);
-            post_dict.put("image",delete_image_list);
+            post_dict.put("image",deleteImageArray);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -413,5 +468,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return responseMsg;
+    }
+    //*******************************************************************************************/
+    // ImageView Filter all clear function
+    //*******************************************************************************************/
+    void imageView_all_clear_filter()
+    {
+        try{
+            for(ImageView iv : imageViews)
+            {
+                iv.clearColorFilter();
+            }
+        }catch (Exception e)
+        {
+
+        }
     }
 }

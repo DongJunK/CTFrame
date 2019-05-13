@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,6 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
         ImageView imageView = holder.imageView;
         final ProgressBar progressBar = holder.progressBar;
 
-        holder.imageView.setColorFilter(Color.argb(140,0,0,255));
 
         Glide.with(context).load(currentImage)
                 .listener(new RequestListener<Drawable>() {
@@ -93,22 +93,25 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
     public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         ImageView imageView;
         ProgressBar progressBar;
-
         public ImageViewHolder(View itemView){
             super(itemView);
             imageView = (ImageView)itemView.findViewById(R.id.imageView);
             progressBar = (ProgressBar)itemView.findViewById(R.id.progBar);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v){
-            clickListener.onClick(v,getAdapterPosition());
+            clickListener.onClick(v,getAdapterPosition(),imageView);
         }
 
         @Override
         public boolean onLongClick(View v) {
-            clickListener.onLongClick(v,getAdapterPosition());
+            Log.i("CTFrame","LongClickTrue");
+            imageView.setColorFilter(Color.argb(140,0,0,255));
+            clickListener.onLongClick(v,getAdapterPosition(),imageView);
+
             return true;
         }
     }

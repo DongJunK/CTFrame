@@ -94,7 +94,7 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
 
         @Override
         public void onClick(View v){
-            clickListener.onClick(v,getAdapterPosition());
+            clickListener.onClick(v,getAdapterPosition(), imageView);
         }
     }
 }

@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.adefault.Adapters.GalleryImageAdapter;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
@@ -19,7 +20,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -187,7 +187,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
 
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, int position, ImageView imageView) {
                 //open full screen activity with omage clicked
                 Intent i = new Intent(Activity_Pixabay_Category.this, Activity_Fullscreen.class);
 
@@ -202,6 +202,10 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
 
                 i.putExtra("POSITION", position);
                 startActivity(i);
+            }
+            @Override
+            public void onLongClick(View view, int position, ImageView imageView) {
+
             }
         };
 

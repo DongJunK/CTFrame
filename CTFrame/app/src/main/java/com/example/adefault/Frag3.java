@@ -12,10 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.example.adefault.Adapters.GalleryImageAdapter;
@@ -181,7 +180,7 @@ public class Frag3 extends Fragment {
 
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, int position, ImageView imageView) {
                 //open full screen activity with omage clicked
                 Intent i = new Intent(getContext(), Activity_Fullscreen.class);
 
@@ -196,6 +195,12 @@ public class Frag3 extends Fragment {
 
                 i.putExtra("POSITION", position);
                 startActivity(i);
+            }
+
+
+            @Override
+            public void onLongClick(View view, int position, ImageView imageView) {
+
             }
         };
 

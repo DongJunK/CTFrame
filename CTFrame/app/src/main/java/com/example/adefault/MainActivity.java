@@ -453,7 +453,13 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             post_dict.put("email", loginId);
-            post_dict.put("image",deleteImageArray);
+            JSONArray jsonArray = new JSONArray();
+            for (int i=0; i < deleteImageArray.size(); i++) {
+                jsonArray.put(deleteImageArray.get(i));
+            }
+            post_dict.put("image",jsonArray);
+
+            Log.i("CTFrame",String.valueOf(post_dict));
 
         } catch (JSONException e) {
             e.printStackTrace();

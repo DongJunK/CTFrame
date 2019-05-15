@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
     final int REQUEST_DRIVE = 3;
+    final int REQUEST_PIXABAY = 4;
     String mCurrentPhotoPath;
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
@@ -53,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<ImageView> imageViews = new ArrayList<>();
 
     GridView gridView;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_pixabay:
                     //mTextMessage.setText(R.string.title_pixabay);
                     intent = new Intent(MainActivity.this, Activity_Pixabay.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_PIXABAY);
                     break;
                 case R.id.navigation_googledrive:
                     intent = new Intent(MainActivity.this, Activity_Drive.class);
@@ -121,10 +124,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("CTFrame",deleteImageArray.get(i));
                 }
                 int success = send_to_server_delete_image();
-                galleryImageAdapter.notifyDataSetChanged();
+
+
+                image_refresh();
 
                 Log.i("CTFrame",String.valueOf(success));
                 selectMode = false;
+
             }
         });
         mTextMessage = (TextView) findViewById(R.id.message);
@@ -192,7 +198,8 @@ public class MainActivity extends AppCompatActivity {
                             if(serverResponseCode == 200){
                                 runOnUiThread(new Runnable() {
                                     public void run() {
-                                        msgToast("서버 저장 완료");
+                                        msgToast("적용되었습니다.");
+                                        image_refresh();
                                     }
                                 });
                             }
@@ -210,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case REQUEST_DRIVE:
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -234,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     photoUri = Uri.parse(data.getStringExtra("URI"));  //드라이브 저장 이미지의 경로
                     Log.i("CTFrame", photoUri.getPath());
 
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -244,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         msgToast("적용되었습니다.");
+                                        image_refresh();
                                     }
                                 });
                             }
@@ -258,6 +267,9 @@ public class MainActivity extends AppCompatActivity {
 
                     }).start();
 
+                    break;
+                case REQUEST_PIXABAY :
+                    image_refresh();
                     break;
             }
         }
@@ -297,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }catch (Exception e){
-                        imageView.setColorFilter(Color.argb(140,0,0,255));
+                        imageView.setColorFilter(Color.argb(140,150,150,150));
                         deleteImageArray.add(imageArray.get(position));
                         if(!imageViews.contains(imageView)){
                             imageViews.add(imageView);
@@ -400,6 +412,7 @@ public class MainActivity extends AppCompatActivity {
     //*******************************************************************************************/
     void image_list_view()
     {
+        imageArray.clear();
         JSONObject obj = new JSONObject();
         SendDataToServer sendDataToServer = new SendDataToServer();
 
@@ -492,5 +505,13 @@ public class MainActivity extends AppCompatActivity {
         {
 
         }
+    }
+    //*******************************************************************************************/
+    // MainActivity image refresh
+    //*******************************************************************************************/
+    void image_refresh()
+    {
+        image_list_view();
+        galleryImageAdapter.notifyDataSetChanged();
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.adefault.Interfaces.SendDataToServer;
@@ -19,6 +20,7 @@ public class Activity_MyPage extends AppCompatActivity {
 
     EditText edt_email, edt_name, edt_favorite, edt_password;
     Button btn_change;
+    ImageButton btn_statistics;
     String name, favorite;
 
     String responseMsg;
@@ -35,6 +37,7 @@ public class Activity_MyPage extends AppCompatActivity {
         edt_favorite = (EditText)findViewById(R.id.edt_favorite);
         edt_password = (EditText)findViewById(R.id.edt_password);
 
+        btn_statistics = (ImageButton)findViewById(R.id.btn_statistics);
         btn_change = (Button)findViewById(R.id.btn_change);
 
         favorite = "";
@@ -62,8 +65,13 @@ public class Activity_MyPage extends AppCompatActivity {
             }
         });
 
-
-
+        btn_statistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( Activity_MyPage.this , Activity_Statistics.class);
+                startActivity( intent );
+            }
+        });
     }
 
     public void MyPageRequest()

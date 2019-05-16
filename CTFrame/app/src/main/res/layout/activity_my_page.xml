@@ -37,6 +37,17 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/btn_statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_statistics_black_24dp"
+            android:background="#00000000"/>
+
         <!--뒤로 가기 버튼-->
 
         <!--제목 테두리-->

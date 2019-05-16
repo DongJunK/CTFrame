@@ -22,9 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a26040e0-f669-4088-b669-fc8b076426cd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_statistics_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,51 +48,52 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="370" column="21" selection-start-line="364" selection-start-column="20" selection-end-line="370" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_Fullscreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+            <state relative-caret-position="276">
+              <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="54" column="60" lean-forward="true" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+            <state relative-caret-position="386">
+              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Interfaces/SendDataToServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
               <folding>
-                <element signature="e#1294#1738#0" expanded="true" />
-                <element signature="e#1737#1738#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_Login.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="205" column="39" selection-start-line="205" selection-start-column="39" selection-end-line="205" selection-end-column="39" />
+            <state relative-caret-position="874">
+              <caret line="59" column="60" selection-start-line="59" selection-start-column="60" selection-end-line="59" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -179,8 +180,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/adefault/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_Signup.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml" />
       </list>
     </option>
   </component>
@@ -196,7 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -224,14 +224,21 @@
               <item name="app" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,7 +393,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22314675" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.22314675" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -408,7 +415,7 @@
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.3184569" />
+      <window_info active="true" anchor="right" id="Preview" order="4" visible="true" weight="0.3184569" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
   </component>
@@ -466,8 +473,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="44" />
+        <state relative-caret-position="608">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -489,13 +496,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/SimpleFragmentPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/SimpleFragmentPagerAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_pixabay.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
@@ -548,8 +549,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="276">
+          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -612,22 +613,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="205" column="39" selection-start-line="205" selection-start-column="39" selection-end-line="205" selection-end-column="39" />
+        <state relative-caret-position="874">
+          <caret line="59" column="60" selection-start-line="59" selection-start-column="60" selection-end-line="59" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/adefault/Activity_MyPage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_my_page.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="54" column="60" lean-forward="true" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
-          <folding>
-            <element signature="e#1294#1738#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="386">
+          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
         </state>
       </provider>
     </entry>

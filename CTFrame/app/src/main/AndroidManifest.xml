@@ -15,20 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity_Fullscreen_mainpage"></activity>
+        <activity android:name=".Slideshow_Activity"></activity>
+        <activity android:name=".Activity_Select" />
+        <activity android:name=".Activity_Fullscreen_mainpage" />
         <activity android:name=".Activity_Pixabay_Category" />
         <activity
             android:name=".Activity_Fullscreen"
             android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name=".Activity_Pixabay"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
-
-        </activity>
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden" />
         <activity android:name=".Activity_Drive" />
         <activity android:name=".Activity_MyPage" />
         <activity android:name=".Activity_Signup" />
-        <activity android:name=".Activity_Statistics"/>
+        <activity android:name=".Activity_Statistics" />
         <activity android:name=".Activiy_Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +41,7 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
-
-        </activity>
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden" />
     </application>
 
 </manifest>

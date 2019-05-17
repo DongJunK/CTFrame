@@ -28,7 +28,7 @@ public class Activiy_Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Activiy_Splash.this, Activity_Login.class);
+                Intent intent = new Intent(Activiy_Splash.this, Activity_Select.class);
                 startActivity(intent);
                 Log.i("fail_reason", "실행 됨");
                 finish();

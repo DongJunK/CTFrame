@@ -31,14 +31,15 @@
             android:layout_weight="1"
 
             />
+
         <ImageView
             android:id="@+id/btn_cancel"
             android:layout_width="41dp"
             android:layout_height="54dp"
             android:layout_marginEnd="8dp"
             android:visibility="invisible"
-            app:srcCompat="@drawable/main_cancel_icon"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+            app:srcCompat="@drawable/main_cancel_icon" />
 
         <ImageView
             android:id="@+id/btn_delete"
@@ -54,10 +55,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <android.support.v7.widget.RecyclerView
@@ -65,9 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     </ScrollView>
-
-
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -80,9 +78,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
-        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/navigation" />
-
-
 </android.support.constraint.ConstraintLayout>

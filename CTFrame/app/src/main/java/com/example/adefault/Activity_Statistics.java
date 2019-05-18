@@ -4,34 +4,42 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.EventLogTags;
 import android.util.Log;
 import android.view.View;
 
 import com.example.adefault.Interfaces.SendDataToServer;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Activity_Statistics extends AppCompatActivity {
 
     BarChart barChart;
+    PieChart pieChart;
 
     ArrayList<BarEntry> barPositive = new ArrayList<>();
     ArrayList<BarEntry> barNegative = new ArrayList<>();
 
-    int positiveCount[] = new int[24];
-    int negativeCount[] = new int[24];
+    ArrayList<Entry> pieValues = new ArrayList<Entry>();
+
+    int positivePieCount = 0, negativePieCount = 0;
+
+    int positiveBarCount[] = new int[24];
+    int negativeBarCount[] = new int[24];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,43 +48,45 @@ public class Activity_Statistics extends AppCompatActivity {
 
         for(int i=0; i<24; i++)
         {
-            positiveCount[i] = 0;
-            negativeCount[i] = 0;
+            positiveBarCount[i] = 0;
+            negativeBarCount[i] = 0;
         }
         BarChartInit();
+        PieChartInit();
     }
 
     private void BarChartInit()
     {
         barChart = (BarChart) findViewById(R.id.barChart);
-        Log.i("Statistics", "BarChartInit 실행" );
+
+        barChart.setDescription("24시간 표정 통계(횟수)");
         RequestStatistics();
 
         // create BarEntry for Bar Group 1
         for(int i=0; i<24; i++)
         {
-            barPositive.add(new BarEntry(positiveCount[i],i));
+            barPositive.add(new BarEntry(positiveBarCount[i],i));
         }
 
         for(int i=0; i<24; i++)
         {
-            barNegative.add(new BarEntry(negativeCount[i], i));
+            barNegative.add(new BarEntry(negativeBarCount[i], i));
         }
 
         // creating dataset for Bar Group1
         //barDataSet1.setColor(Color.rgb(0, 155, 0));
-        BarDataSet barDataSetP = new BarDataSet(barPositive, "Positive Bar Group");
-        barDataSetP.setColor(Color.rgb(0,0,255));
+        BarDataSet barDataSetP = new BarDataSet(barPositive, "긍정적인 표정");
+        barDataSetP.setColor(Color.rgb(100,100,255));
 
         // creating dataset for Bar Group 2
-        BarDataSet barDataSetN = new BarDataSet(barNegative, "Negative Bar Group");
-        barDataSetN.setColor(Color.rgb(255,0,0));
+        BarDataSet barDataSetN = new BarDataSet(barNegative, "부정적인 표정");
+        barDataSetN.setColor(Color.rgb(255,100,100));
 
         //0~24
         ArrayList<String> labels = new ArrayList<String>();
         for(int i=0; i<24; i++)
         {
-            labels.add(i+"");
+            labels.add(i+"시");
         }
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();  // combined all dataset into an arraylist
@@ -85,9 +95,54 @@ public class Activity_Statistics extends AppCompatActivity {
 
 // initialize the Bardata with argument labels and dataSet
         BarData data = new BarData(labels, dataSets);
+        data.setValueFormatter(new DefaultValueFormatter(0));
         barChart.setData(data);
 
         barChart.animateY(1000);
+    }
+
+    private void PieChartInit()
+    {
+        pieChart = (PieChart)findViewById(R.id.pieChart);
+
+        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+        // xIndex (even if from different DataSets), since no values can be
+        // drawn above each other.
+
+        pieValues.add(new Entry(positivePieCount,0));
+        pieValues.add(new Entry(negativePieCount,1));
+
+        PieDataSet dataSet = new PieDataSet(pieValues,"");
+
+        ArrayList<String> emotion = new ArrayList<String>();
+
+        emotion.add("긍정적인 표정");
+        emotion.add("부정적인 표정");
+
+
+        PieData data = new PieData(emotion, dataSet);
+        // In Percentage
+        pieChart.setUsePercentValues(true);
+        data.setValueFormatter(new PercentFormatter());
+
+        // Default value
+        //data.setValueFormatter(new DefaultValueFormatter(0));
+        pieChart.setData(data);
+        pieChart.setDescription("하루 표정 통계(%)");
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setTransparentCircleRadius(58f);
+
+        int[] colorSet = {Color.rgb(100,100,255), Color.rgb(255,100,100)};
+        pieChart.setHoleRadius(58f);
+        dataSet.setColors(colorSet);
+
+        data.setValueTextSize(13f);
+        data.setValueTextColor(Color.DKGRAY);
+
+        pieChart.animateY(1000);
+
+        //클릭 리스너
+        //pieChart.setOnChartValueSelectedListener(this);
     }
 
     private void RequestStatistics() {
@@ -124,11 +179,13 @@ public class Activity_Statistics extends AppCompatActivity {
 
                         if(emotion.equals("positive"))
                         {
-                            positiveCount[Integer.parseInt(date.substring(11,13))]++;
+                            positiveBarCount[Integer.parseInt(date.substring(11,13))]++;
+                            positivePieCount++;
                         }
                         else
                         {
-                            negativeCount[Integer.parseInt(date.substring(11,13))]++;
+                            negativeBarCount[Integer.parseInt(date.substring(11,13))]++;
+                            negativePieCount++;
                         }
                     }
                 } catch (JSONException e) {

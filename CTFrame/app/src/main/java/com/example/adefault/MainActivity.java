@@ -11,7 +11,9 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> deleteImageArray = new ArrayList<>();
     RecyclerView recyclerView;
     GalleryImageAdapter_mainpage galleryImageAdapter;
+    //화면 상단 도착시 새로고침
+    SwipeRefreshLayout swipeRefreshLayout;
 
     Intent intent;
     ImageView btn_cancel,btn_delete;
@@ -136,6 +140,39 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //상단 페이지 도착시 새로고침
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar.make(recyclerView,"새로고침 완료",Snackbar.LENGTH_SHORT).show();
+                        image_refresh();        //수정
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },500);
+            }
+        });
+
+        /*
+        //상단 페이지 도착시 자료 갱신
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(!recyclerView.canScrollVertically(-1)){
+                    image_refresh();        //수정
+
+                }
+                else if(!recyclerView.canScrollVertically(1)){
+                }
+                else{
+                }
+            }
+        });
+        */
     }
 
     //*******************************************************************************************/
@@ -281,7 +318,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void Init() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        //gridView = (GridView)findViewById(R.id.gridView);
+        //화면 상단 도착시 새로고침 layout
+         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swip);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setHasFixedSize(true);

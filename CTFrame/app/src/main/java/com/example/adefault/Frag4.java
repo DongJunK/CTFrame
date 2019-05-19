@@ -162,7 +162,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
         String API_KEY = "10343836-4aa4b118c22502ac110971841";     // api key 값
         int Page_num = page;        //페이지 값
-        String url = "https://pixabay.com/api/?key=" + API_KEY + "&page=" + Page_num + "&image_type=photo&order=latest";      //검색 값
+        String url = "https://pixabay.com/api/?key=" + API_KEY + "&page=" + Page_num + "&image_type=photo&editors_choice=true";      //검색 값
         //로그
         Log.i("check", url);
         BufferedReader reader = null;       //결과값을 읽기 위한 버퍼리더

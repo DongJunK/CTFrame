@@ -41,4 +41,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation "com.android.support:recyclerview-selection:28.0.0"
     implementation files('libs/mpandroidchartlibrary-2-2-4.jar')
+
+    //swiperefreshLayout
+    implementation 'com.android.support:support-v4:28.0.0'
+
 }

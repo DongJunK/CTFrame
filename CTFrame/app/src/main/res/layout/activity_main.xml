@@ -12,8 +12,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_height="170dp"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -22,15 +22,11 @@
             android:layout_height="53dp"
             android:src="@drawable/title"
             tools:layout_editor_absoluteY="16dp" />
+
         <View
-
             android:layout_width="0dp"
-
             android:layout_height="0dp"
-
-            android:layout_weight="1"
-
-            />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/btn_cancel"
@@ -52,20 +48,20 @@
             tools:layout_editor_absoluteY="15dp" />
     </LinearLayout>
 
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swip"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintBottom_toTopOf="@+id/navigation"
+                android:layout_height="0dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-    </ScrollView>
+            </android.support.v4.widget.SwipeRefreshLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"

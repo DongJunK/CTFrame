@@ -117,6 +117,8 @@ public class Activity_Signup extends AppCompatActivity {
                         SignUp(view);
                         if(responseMsg == 1)
                         {
+                            //회원가입 성공하면 픽사베이 자동 다운
+                            downpixa(view);
                             Toast.makeText(Activity_Signup.this, "회원가입을 완료하였습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }
@@ -208,6 +210,51 @@ public class Activity_Signup extends AppCompatActivity {
             {
                 //section 4   "signUpCheck 라고 되어있는 부분을 승배가 준 파일로 고쳐서 보낼것 //
                 obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict),"sign_up").get());
+                //section 4//
+
+                try
+                {
+                    //sign_in 의 받을 값은 Header, responseMsg이다
+                    //section 5 받을 값만 받으면 된다 ()안에 값은 서버랑 일치 시키도록해야함
+                    responseMsg = obj.getInt("responseMsg");
+                    //section 5
+                }
+                catch (JSONException e)
+                {
+                    Log.i("JSONException", "JSONError : " + e.toString());
+                }
+            }
+            catch (Exception e)
+            {
+                Log.i("Exception",e.toString());
+            }
+        }
+    }
+
+    public void downpixa(View v)
+    {
+        //section 0 여기 건들지마
+        JSONObject obj = new JSONObject();
+        SendDataToServer sendDataToServer = new SendDataToServer();
+        //section 0 여기 건들지마
+
+        //section 2 여기는 고치치마라//
+        JSONObject post_dict = new JSONObject();
+        //section 2 여기 까지//
+
+        //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
+        try {
+            post_dict.put("email" , edt_email.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //section 3 여기까지//
+
+        if (post_dict.length() > 0) {
+            try
+            {
+                //section 4   "signUpCheck 라고 되어있는 부분을 승배가 준 파일로 고쳐서 보낼것 //
+                obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict),"pixa_downimage").get());
                 //section 4//
 
                 try

@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 int success = send_to_server_delete_image();
 
-
+                deleteImageArray.clear();
                 image_refresh();
 
                 Log.i("CTFrame",String.valueOf(success));
@@ -329,10 +329,8 @@ public class MainActivity extends AppCompatActivity {
 
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
 
-
             @Override
             public void onClick(View view, int position, ImageView imageView) {
-
                 if(selectMode)
                 {
 
@@ -352,9 +350,7 @@ public class MainActivity extends AppCompatActivity {
                         if(!imageViews.contains(imageView)){
                             imageViews.add(imageView);
                         }
-
                     }
-
                 }
                 else
                 {

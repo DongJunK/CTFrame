@@ -244,10 +244,8 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
                                 mHandler.sendMessage(msg);
                             }
                         };
+                        thread.start();
                     }
-
-                    thread.start();
-
                     //어뎁터를 추가로 다는 방법
                     /*
                     galleryImageAdapter = new GalleryImageAdapter(getActivity(), images, listener);

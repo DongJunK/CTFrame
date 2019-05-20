@@ -288,10 +288,8 @@ public class Frag3 extends Fragment {
                                 mHandler.sendMessage(msg);
                             }
                         };
+                        thread.start();
                     }
-
-                    thread.start();
-
                     //어뎁터를 추가로 다는 방법
                     /*
                     galleryImageAdapter = new GalleryImageAdapter(getActivity(), images, listener);

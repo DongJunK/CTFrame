@@ -114,6 +114,7 @@ public class Activity_Signup extends AppCompatActivity {
                     else
                     {
                         //회원가입 완료
+                        btn_sign_up.setEnabled(false);
                         SignUp(view);
                         if(responseMsg == 1)
                         {

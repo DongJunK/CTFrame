@@ -49,19 +49,22 @@ public class MainActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
     String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
-    ArrayList<String> imageArray = new ArrayList<>();
+    static ArrayList<String> imageArray = new ArrayList<>();
     ArrayList<String> deleteImageArray = new ArrayList<>();
     RecyclerView recyclerView;
-    GalleryImageAdapter_mainpage galleryImageAdapter;
+    static GalleryImageAdapter_mainpage galleryImageAdapter;
     //화면 상단 도착시 새로고침
-    SwipeRefreshLayout swipeRefreshLayout;
+    static SwipeRefreshLayout swipeRefreshLayout;
 
     Intent intent;
     ImageView btn_cancel,btn_delete;
     ArrayList<ImageView> imageViews = new ArrayList<>();
 
     GridView gridView;
+    //핸들러 성공 코드
     public static  final int redown_pixa = 101;        //성공값
+    public static  final int refresh = 102;        //성공값
+
     private final MainActivity.MyHandler mHandler = new MyHandler(MainActivity.this);
 
     //핸들러 작성
@@ -89,6 +92,18 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }).start();
 
+                        break;
+
+                    case refresh:
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //화면 갱신
+                                image_list_view();
+                            }
+                        }).start();
+                        galleryImageAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
                         break;
                 }
             }
@@ -181,31 +196,15 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        //핸들러 메세지 보냄 : 새로고침 해라 팍씨
+                        Message msg = mHandler.obtainMessage(refresh);
+                        mHandler.sendMessage(msg);
+                        deleteImageArray.clear();
                         Snackbar.make(recyclerView,"새로고침 완료",Snackbar.LENGTH_SHORT).show();
-                        image_refresh();        //수정
-                        swipeRefreshLayout.setRefreshing(false);
                     }
                 },500);
             }
         });
-
-        /*
-        //상단 페이지 도착시 자료 갱신
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if(!recyclerView.canScrollVertically(-1)){
-                    image_refresh();        //수정
-
-                }
-                else if(!recyclerView.canScrollVertically(1)){
-                }
-                else{
-                }
-            }
-        });
-        */
     }
 
     //*******************************************************************************************/
@@ -477,7 +476,7 @@ public class MainActivity extends AppCompatActivity {
     //*******************************************************************************************/
     // List View
     //*******************************************************************************************/
-    void image_list_view()
+    static void image_list_view()
     {
         imageArray.clear();
         JSONObject obj = new JSONObject();
@@ -566,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return responseMsg;
     }
-    
+
     //픽사베이 지운 만큼 다시 다운로드
     public static void redownpixa(int count)
     {

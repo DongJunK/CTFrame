@@ -39,6 +39,7 @@ public class Frag3 extends Fragment {
     public static int page_num =1;      //초기 페이지 값
     public static Thread thread;
     public static  final int LOAD_SUCCESS = 101;        //성공값
+    public static  boolean refresh_check = true;        //화면 갱신 중인지 아닌지 체크하는 플래그값
     public String search_val = "";
 
     ArrayList<String> img_url_list_result = new ArrayList<>();     //이미지 url를 저장할 array list
@@ -81,6 +82,7 @@ public class Frag3 extends Fragment {
     /****** 파라미터 검색할 페이지 : page *********/
     /**************************************************/
     public ArrayList<String> default_pixa(int page){
+        refresh_check = false;      //사용중이라고 표시하고
         ArrayList<String> img_url_list = new ArrayList<>();     //이미지 url를 저장할 array list
 
         String API_KEY = "10343836-4aa4b118c22502ac110971841";     // api key 값
@@ -150,7 +152,7 @@ public class Frag3 extends Fragment {
             //이미지 태그 넣고
             images.get(i).set_tag(img_tag_list.get(i));
         }
-
+        refresh_check = true;      //사용중이라고 표시하고
         return img_url_list;
     }
 
@@ -270,21 +272,23 @@ public class Frag3 extends Fragment {
                 }
                 else if(!recyclerView.canScrollVertically(1)){
                     Log.i("check", "리스트 하단");
-                    page_num+=1;
 
-                    thread = new Thread(){
-                        public void run(){
-                            //로그
-                            Log.i("check", "요청 페이지 :" + page_num);
-                            ArrayList<String> test = default_pixa(page_num);
+                    if(refresh_check) {
+                        page_num+=1;
+                        thread = new Thread() {
+                            public void run() {
+                                //로그
+                                Log.i("check", "요청 페이지 :" + page_num);
+                                ArrayList<String> test = default_pixa(page_num);
 
-                            Bundle bun = new Bundle();
-                            bun.putStringArrayList("PIXA_URL", test);
+                                Bundle bun = new Bundle();
+                                bun.putStringArrayList("PIXA_URL", test);
 
-                            Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
-                            mHandler.sendMessage(msg);
-                        }
-                    };
+                                Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
+                                mHandler.sendMessage(msg);
+                            }
+                        };
+                    }
 
                     thread.start();
 

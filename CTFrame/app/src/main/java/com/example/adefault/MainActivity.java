@@ -61,6 +61,39 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<ImageView> imageViews = new ArrayList<>();
 
     GridView gridView;
+    public static  final int redown_pixa = 101;        //성공값
+    private final MainActivity.MyHandler mHandler = new MyHandler(MainActivity.this);
+
+    //핸들러 작성
+    private static class MyHandler extends Handler {
+        private final WeakReference<MainActivity> weakReference;
+
+        public MyHandler(MainActivity mainactivity) {
+            weakReference = new WeakReference<MainActivity>(mainactivity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+
+            MainActivity mainactivity = weakReference.get();
+
+            if (mainactivity != null) {
+                switch (msg.what) {
+
+                    case redown_pixa:
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //재 다운 시작
+                                redownpixa(1);
+                            }
+                        }).start();
+
+                        break;
+                }
+            }
+        }
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -503,6 +536,14 @@ public class MainActivity extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray();
             for (int i=0; i < deleteImageArray.size(); i++) {
                 jsonArray.put(deleteImageArray.get(i));
+
+                //수정
+                if(deleteImageArray.get(i).contains("is_auto")) {
+                    Log.i("pixa_down", "사진 한장 다운");
+                    //핸들러 한테 전송 다시 다운 받아라 팍씨
+                    Message msg = mHandler.obtainMessage(redown_pixa);
+                    mHandler.sendMessage(msg);
+                }
             }
             post_dict.put("image",jsonArray);
 
@@ -525,6 +566,43 @@ public class MainActivity extends AppCompatActivity {
         }
         return responseMsg;
     }
+    
+    //픽사베이 지운 만큼 다시 다운로드
+    public static void redownpixa(int count)
+    {
+        Log.i("pixa_down", ">>>>>>자동 다운로드 함수 시작  :::::: "+count+"개");
+        //section 0 여기 건들지마
+        JSONObject obj = new JSONObject();
+        SendDataToServer sendDataToServer = new SendDataToServer();
+        //section 0 여기 건들지마
+
+        //section 2 여기는 고치치마라//
+        JSONObject post_dict = new JSONObject();
+        //section 2 여기 까지//
+
+        //section 3 보내야 하는 값 만큼 매치시켜줘서 보내면됨//
+        try {
+            post_dict.put("email" , loginId);
+            post_dict.put("count", count);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //section 3 여기까지//
+
+        if (post_dict.length() > 0) {
+            try
+            {
+                //section 4   "signUpCheck 라고 되어있는 부분을 승배가 준 파일로 고쳐서 보낼것 //
+                sendDataToServer.execute(String.valueOf(post_dict),"reload_pixa_pic").get();
+                //section 4//
+            }
+            catch (Exception e)
+            {
+                Log.i("CTFrame",e.toString());
+            }
+        }
+    }
+
     //*******************************************************************************************/
     // ImageView Filter all clear function
     //*******************************************************************************************/

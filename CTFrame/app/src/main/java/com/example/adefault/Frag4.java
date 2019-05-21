@@ -37,6 +37,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
     public static int page_num =1;      //초기 페이지 값
     public static Thread thread;
+    public static boolean refresh_check = true;     //화면 갱신 중인지 아닌지 체크하는 플래그값
 
     ArrayList<String> img_url_list_result = new ArrayList<>();     //이미지 url를 저장할 array list
     ArrayList<String> img_tag_list = new ArrayList<>();     //이미지 tag를 저장할 array list
@@ -158,6 +159,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
     /****** 파라미터 검색할 페이지 : page *********/
     /**************************************************/
     public ArrayList<String> default_pixa(int page){
+        refresh_check = false;      //사용중이라고 표시하고
         ArrayList<String> img_url_list = new ArrayList<>();     //이미지 url를 저장할 array list
 
         String API_KEY = "10343836-4aa4b118c22502ac110971841";     // api key 값
@@ -230,6 +232,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         }
         /***********************************************************/
 
+        refresh_check = true;       //갱신 끝났으니깐 다시 갱신할수 있게 표시
         return img_url_list;
     }
 
@@ -283,23 +286,24 @@ public class Frag4 extends android.support.v4.app.Fragment {
                 }
                 else if(!recyclerView.canScrollVertically(1)){
                     Log.i("check", "리스트 하단");
-                    page_num+=1;
 
-                    thread = new Thread(){
-                        public void run(){
-                            //로그
-                            Log.i("check", "요청 페이지 :" + page_num);
-                            ArrayList<String> test = default_pixa(page_num);
+                    //플래그
+                    //쓰레드 도는중 아니면(초기화는 핸들러에서 초기화)
+                    if(refresh_check){
+                        page_num+=1;
+                        thread = new Thread(){
+                            public void run(){
+                                ArrayList<String> test = default_pixa(page_num);
 
-                            Bundle bun = new Bundle();
-                            bun.putStringArrayList("PIXA_URL", test);
+                                Bundle bun = new Bundle();
+                                bun.putStringArrayList("PIXA_URL", test);
 
-                            Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
-                            mHandler.sendMessage(msg);
-                        }
-                    };
-
-                    thread.start();
+                                Message msg = mHandler.obtainMessage(LOAD_SUCCESS);
+                                mHandler.sendMessage(msg);
+                            }
+                        };
+                        thread.start();
+                    }
 
                     //어뎁터를 추가로 다는 방법
                     /*

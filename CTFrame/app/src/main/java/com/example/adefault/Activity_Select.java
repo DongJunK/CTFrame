@@ -25,7 +25,7 @@ public class Activity_Select extends AppCompatActivity {
         slide_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Select.this, Slideshow_Activity.class);
+                Intent intent = new Intent(Activity_Select.this, UnityPlayerActivity.class);
                 startActivity(intent);
             }
         });

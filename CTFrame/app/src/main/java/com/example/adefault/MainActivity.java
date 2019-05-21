@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 {
 
                     try{
-                        Log.i("CTFrame",imageView.getColorFilter().toString());
+                        Log.i("CTFrameTest",imageView.getColorFilter().toString());
                         imageView.clearColorFilter();
                         for(int i=0;i<deleteImageArray.size();++i)
                         {
@@ -377,6 +377,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }catch (Exception e){
+                        Log.i("CTFrameTest",e.toString());
                         imageView.setColorFilter(Color.argb(140,150,150,150));
                         deleteImageArray.add(imageArray.get(position));
                         if(!imageViews.contains(imageView)){
@@ -396,6 +397,8 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position, ImageView imageView){
+                Log.i("CTFrameTest",imageView.toString());
+                imageView.setColorFilter(Color.argb(140,150,150,150));
                 selectMode = true;
                 btn_cancel.setVisibility(View.VISIBLE);
                 btn_delete.setVisibility(View.VISIBLE);

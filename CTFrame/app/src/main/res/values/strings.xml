@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">default</string>
+    <string name="app_name">CTFrame</string>
     <string name="title_mypage">Mypage</string>
     <string name="title_pixabay">Pixabay</string>
     <string name="title_googledrive">GoogleDrive</string>

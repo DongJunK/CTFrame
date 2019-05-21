@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
@@ -14,15 +15,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.example.adefault.Interfaces.SendDataToServer;
+
 public class Activity_Drive extends Activity {
     WebView wv;
     String fileURI = null;
-
+    String loginId;
+    String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drive);
-
+        Intent intent = getIntent();
+        loginId = intent.getStringExtra("loginID");
         wv = (WebView) findViewById(R.id.wv);
         wv.loadUrl("https://drive.google.com/drive/my-drive");
         wv.setWebViewClient(new client());
@@ -60,17 +65,20 @@ public class Activity_Drive extends Activity {
         fileURI = "/storage/emulated/0/Download/CTFrame/" + imageFileName + ".jpg";
         dm.enqueue(req); // Must
         Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
+        req.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+        SendDataToServer sendImage = new SendDataToServer(upLoadServerUri);
+        int serverResponseCode = sendImage.uploadFile(loginId, fileURI);
 
-        Intent intent = new Intent();
-        intent.putExtra("URI",fileURI);
-        setResult(RESULT_OK,intent);
-        finish();
+        Log.i("CTFrame",Integer.toString(serverResponseCode));
+
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
         finish();
+
     }
     private class client extends WebViewClient {
         @Override

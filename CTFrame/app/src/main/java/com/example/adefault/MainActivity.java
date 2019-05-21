@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_googledrive:
                     intent = new Intent(MainActivity.this, Activity_Drive.class);
+                    intent.putExtra("loginID",loginId);
                     startActivityForResult(intent,REQUEST_DRIVE);
                     break;
                 case R.id.navigation_mygallery:
@@ -285,57 +286,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case REQUEST_DRIVE:
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    albumFile= null;
-
-                    try
-                    {
-                        //새 file을 하나 만듬
-                        albumFile = createImageFile();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    if(albumFile != null)
-                    {
-                        albumUri = Uri.fromFile(albumFile);     //앨범 이미지 Crop한 결과는 새로운 위치 저장
-                    }
-
-                    photoUri = Uri.parse(data.getStringExtra("URI"));  //드라이브 저장 이미지의 경로
-                    Log.i("CTFrame", photoUri.getPath());
-
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            SendDataToServer sendImage = new SendDataToServer(upLoadServerUri);
-                            int serverResponseCode = sendImage.uploadFile(loginId, photoUri.getPath());
-
-                            if(serverResponseCode == 200){
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        msgToast("적용되었습니다.");
-                                        image_refresh();
-                                    }
-                                });
-                            }
-                            else{
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        msgToast("실패하셨습니다.");
-                                    }
-                                });
-                            }
-                        }
-
-                    }).start();
-
+                    image_refresh();
                     break;
                 case REQUEST_PIXABAY :
                     image_refresh();

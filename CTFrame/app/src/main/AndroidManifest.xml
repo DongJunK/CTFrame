@@ -6,13 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
     <supports-screens
     android:largeScreens="true"
     android:normalScreens="true"
     android:smallScreens="true"
     android:xlargeScreens="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ctframe_launcher"
@@ -32,6 +31,7 @@
             android:name=".Activity_Pixabay"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden" />
         <activity android:name=".Activity_Drive" />
+        <activity android:name=".UnityPlayerActivity" />
         <activity android:name=".Activity_MyPage" />
         <activity android:name=".Activity_Signup" />
         <activity android:name=".Activity_Statistics" />

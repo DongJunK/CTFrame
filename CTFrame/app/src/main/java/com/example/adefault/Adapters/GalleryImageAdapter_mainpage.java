@@ -109,7 +109,6 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
         @Override
         public boolean onLongClick(View v) {
             Log.i("CTFrame","LongClickTrue");
-            imageView.setColorFilter(Color.argb(140,150,150,150));
             clickListener.onLongClick(v,getAdapterPosition(),imageView);
 
             return true;

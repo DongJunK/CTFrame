@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<opencv_ml_rtrees>
+  <format>3</format>
+  <is_classifier>1</is_classifier>
+  <var_all>110</var_all>
+  <var_count>109</var_count>
+  <ord_var_count>109</ord_var_count>
+  <cat_var_count>1</cat_var_count>
+  <training_params>
+    <use_surrogates>0</use_surrogates>
+    <max_categories>10</max_categories>
+    <regression_accuracy>0.</regression_accuracy>
+    <max_depth>15</max_depth>
+    <min_sample_count>2</min_sample_count>
+    <cross_validation_folds>0</cross_validation_folds>
+    <nactive_vars>0</nactive_vars></training_params>
+  <global_var_idx>1</global_var_idx>
+  <var_idx>
+    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48
+    49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71
+    72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94
+    95 96 97 98 99 100 101 102 103 104 105 106 107 108</var_idx>
+  <var_type>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 1</var_type>
+  <cat_ofs>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0</cat_ofs>
+  <class_labels>
+    0 1 2</class_labels>
+  <missing_subst>
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.</missing_subst>
+  <oob_error>2.1818181818181820e-002</oob_error>
+  <ntrees>1</ntrees>
+  <trees>
+    <_>
+      <nodes>
+        <_>
+          <depth>0</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>70</var>
+              <quality>4.4303665161132812e+002</quality>
+              <le>2.2465949058532715e+000</le></_></splits></_>
+        <_>
+          <depth>1</depth>
+          <value>1.</value>
+          <norm_class_idx>1</norm_class_idx>
+          <splits>
+            <_><var>5</var>
+              <quality>2.3702978515625000e+002</quality>
+              <le>1.1926057434082031e+002</le></_></splits></_>
+        <_>
+          <depth>2</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>2</depth>
+          <value>1.</value>
+          <norm_class_idx>1</norm_class_idx>
+          <splits>
+            <_><var>93</var>
+              <quality>235.</quality>
+              <le>-2.7539439201354980e+000</le></_></splits></_>
+        <_>
+          <depth>3</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>3</depth>
+          <value>1.</value>
+          <norm_class_idx>1</norm_class_idx></_>
+        <_>
+          <depth>1</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx>
+          <splits>
+            <_><var>0</var>
+              <quality>3.8426516723632812e+002</quality>
+              <le>8.0500534057617188e+001</le></_></splits></_>
+        <_>
+          <depth>2</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx>
+          <splits>
+            <_><var>14</var>
+              <quality>2.4598889160156250e+002</quality>
+              <le>3.8408523559570312e+001</le></_></splits></_>
+        <_>
+          <depth>3</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>86</var>
+              <quality>7.1044441223144531e+001</quality>
+              <le>1.7712974548339844e-001</le></_></splits></_>
+        <_>
+          <depth>4</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>86</var>
+              <quality>45.</quality>
+              <le>-3.0004639625549316e+000</le></_></splits></_>
+        <_>
+          <depth>5</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>5</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>4</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>3</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx>
+          <splits>
+            <_><var>53</var>
+              <quality>2.1962236022949219e+002</quality>
+              <le>1.8291839361190796e+000</le></_></splits></_>
+        <_>
+          <depth>4</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx>
+          <splits>
+            <_><var>27</var>
+              <quality>2.2126979064941406e+002</quality>
+              <le>1.9093017578125000e+001</le></_></splits></_>
+        <_>
+          <depth>5</depth>
+          <value>1.</value>
+          <norm_class_idx>1</norm_class_idx>
+          <splits>
+            <_><var>54</var>
+              <quality>16.</quality>
+              <le>1.5130980014801025e+000</le></_></splits></_>
+        <_>
+          <depth>6</depth>
+          <value>1.</value>
+          <norm_class_idx>1</norm_class_idx></_>
+        <_>
+          <depth>6</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>5</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx>
+          <splits>
+            <_><var>105</var>
+              <quality>221.</quality>
+              <le>3.0137481689453125e+000</le></_></splits></_>
+        <_>
+          <depth>6</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>6</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>4</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>51</var>
+              <quality>12.</quality>
+              <le>2.3790530860424042e-002</le></_></splits></_>
+        <_>
+          <depth>5</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>5</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>2</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>66</var>
+              <quality>1.7610055541992187e+002</quality>
+              <le>5.8603554964065552e-001</le></_></splits></_>
+        <_>
+          <depth>3</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>3</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>11</var>
+              <quality>1.7480000305175781e+002</quality>
+              <le>2.1037899017333984e+001</le></_></splits></_>
+        <_>
+          <depth>4</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx>
+          <splits>
+            <_><var>50</var>
+              <quality>10.</quality>
+              <le>5.9854191541671753e-001</le></_></splits></_>
+        <_>
+          <depth>5</depth>
+          <value>2.</value>
+          <norm_class_idx>2</norm_class_idx></_>
+        <_>
+          <depth>5</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_>
+        <_>
+          <depth>4</depth>
+          <value>0.</value>
+          <norm_class_idx>0</norm_class_idx></_></nodes></_></trees></opencv_ml_rtrees>
+</opencv_storage>

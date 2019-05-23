@@ -48,6 +48,17 @@ public class Activity_Drive extends Activity {
 
     private void downloadingFile(String url, String userAgent, String contentDisposition, String mimetype, long contentLength)
     {
+        if(!(contentDisposition.contains(".jpg")
+                ||contentDisposition.contains(".png")
+                ||contentDisposition.contains(".jpeg")
+                ||contentDisposition.contains(".gif")
+                ||contentDisposition.contains(".JPG")
+                ||contentDisposition.contains(".PNG")
+                ||contentDisposition.contains(".JPEG")))
+        {
+            Toast.makeText(getApplicationContext(), "사진만 가능합니다.", Toast.LENGTH_LONG).show();
+            return;
+        }
         DownloadManager.Request req = new DownloadManager.Request(Uri.parse(url));
         req.allowScanningByMediaScanner(); // Must
         req.setMimeType(mimetype); // Must

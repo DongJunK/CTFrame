@@ -2,9 +2,13 @@ package com.example.adefault;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +23,7 @@ public class Activity_Select extends AppCompatActivity {
     private final int INTERNET_PERMISSION_CODE = 1;
     ImageView slide_img, photoEdit_img;
     TextView slide_txt, photoEdit_txt;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,22 @@ public class Activity_Select extends AppCompatActivity {
         photoEdit_txt = (TextView) findViewById(R.id.textAlbumEdit);
 
 
-        requestInternetPermission();
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (mWifi.isConnected()) {
+            // Do whatever
+            Toast.makeText(this, "와이파이가 연결되었습다", Toast.LENGTH_SHORT).show();
+        }else  {
+
+            requestInternetPermission();
+//            enableWifi();
+           // wifi.setWifiEnabled(true);
+            Toast.makeText(this, "와이파이가 연결되어있지 않습니다", Toast.LENGTH_SHORT).show();
+        }
+
+
+
         slide_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,17 +87,21 @@ public class Activity_Select extends AppCompatActivity {
             }
         });
     }
-
     private void requestInternetPermission() {
 
           new AlertDialog.Builder(this)
                   .setTitle("허용이 필요합니다")
-                  .setMessage("인터넷을 사용하기 위해 허용이 필요합니다.")
+                  .setMessage("와이파이 사용을 위해 허용이 필요합니다.")
                   .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                       @Override
                       public void onClick(DialogInterface dialog, int which) {
+                    //      enableWifi
+                          WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                          wifi.setWifiEnabled(true);
+
                           ActivityCompat.requestPermissions(Activity_Select.this,
-                                  new String[]{Manifest.permission.INTERNET}, INTERNET_PERMISSION_CODE);
+                                  new String[]{Manifest.permission.ACCESS_WIFI_STATE}, INTERNET_PERMISSION_CODE);
+
                       }
                   })
                   .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -89,6 +113,9 @@ public class Activity_Select extends AppCompatActivity {
                   .create().show();
       }
 
+    private WifiManager getWifiManager() {
+        return (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+    }
 
 
     @Override

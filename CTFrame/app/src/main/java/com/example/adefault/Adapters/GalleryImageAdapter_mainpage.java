@@ -51,7 +51,9 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
 
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_item,parent,false);
+        View v= LayoutInflater.
+                from(parent.getContext()).
+                inflate(R.layout.gallery_item,parent,false);
         return new ImageViewHolder(v) ;
     }
 
@@ -93,6 +95,7 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
     public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         ImageView imageView;
         ProgressBar progressBar;
+
         public ImageViewHolder(View itemView){
             super(itemView);
             imageView = (ImageView)itemView.findViewById(R.id.imageView);

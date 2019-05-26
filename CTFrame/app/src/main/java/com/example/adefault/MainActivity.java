@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_DRIVE = 3;
     final int REQUEST_PIXABAY = 4;
     String mCurrentPhotoPath;
-    String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
+    String upLoadServerUrl = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     static ArrayList<String> imageArray = new ArrayList<>();
     ArrayList<String> deleteImageArray = new ArrayList<>();
@@ -262,8 +262,8 @@ public class MainActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            SendDataToServer sendImage = new SendDataToServer(upLoadServerUri);
-                            int serverResponseCode = sendImage.uploadFile(loginId, albumUri.getPath());
+                            SendDataToServer sendImage = new SendDataToServer();
+                            int serverResponseCode = sendImage.uploadFile(upLoadServerUrl,loginId, albumUri.getPath());
 
                             if(serverResponseCode == 200){
                                 runOnUiThread(new Runnable() {
@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case REQUEST_DRIVE:
+
                     image_refresh();
                     break;
                 case REQUEST_PIXABAY :
@@ -316,10 +317,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position, ImageView imageView) {
                 if(selectMode)
                 {
-
                     try{
                         Log.i("CTFrameTest",imageView.getColorFilter().toString());
                         imageView.clearColorFilter();
+
                         for(int i=0;i<deleteImageArray.size();++i)
                         {
                             if(deleteImageArray.get(i).equals(imageArray.get(position)))
@@ -344,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("POSITION", position);
                     startActivity(i);
                 }
-
             }
             @Override
             public void onLongClick(View view, int position, ImageView imageView){
@@ -356,7 +356,6 @@ public class MainActivity extends AppCompatActivity {
                 imageViews.add(imageView);
                 deleteImageArray.add(imageArray.get(position));
             }
-
         };
 
         // this대신 getActivity 사용

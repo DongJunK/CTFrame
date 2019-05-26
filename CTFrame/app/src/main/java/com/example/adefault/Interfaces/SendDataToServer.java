@@ -115,10 +115,10 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
         File sourceFile = new File(sourceFileUri);
-
+        while(!sourceFile.isFile()){}
         if (!sourceFile.isFile()) {
             Log.i("CTFrame", "파일이 존재하지 않음");
-            uploadFile(upLoadServerUrl, loginId, sourceFileUri);
+
             return 0;
         }
         else

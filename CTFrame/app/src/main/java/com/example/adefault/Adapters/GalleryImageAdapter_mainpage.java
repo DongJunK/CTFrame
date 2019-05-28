@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -95,24 +96,25 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
     public class ImageViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         ImageView imageView;
         ProgressBar progressBar;
-
+        CheckBox checkBox;
         public ImageViewHolder(View itemView){
             super(itemView);
             imageView = (ImageView)itemView.findViewById(R.id.imageView);
             progressBar = (ProgressBar)itemView.findViewById(R.id.progBar);
+            checkBox = (CheckBox)itemView.findViewById(R.id.checkBox);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v){
-            clickListener.onClick(v,getAdapterPosition(),imageView);
+            clickListener.onClick(v,getAdapterPosition(),imageView,checkBox);
         }
 
         @Override
         public boolean onLongClick(View v) {
             Log.i("CTFrame","LongClickTrue");
-            clickListener.onLongClick(v,getAdapterPosition(),imageView);
+            clickListener.onLongClick(v,getAdapterPosition(),imageView, checkBox);
 
             return true;
         }

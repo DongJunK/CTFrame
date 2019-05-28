@@ -20,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     String upLoadServerUrl = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     static ArrayList<String> imageArray = new ArrayList<>();
+    ArrayList<CheckBox> checkBoxes = new ArrayList<>();
     ArrayList<String> deleteImageArray = new ArrayList<>();
     RecyclerView recyclerView;
     static GalleryImageAdapter_mainpage galleryImageAdapter;
@@ -162,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
                 selectMode = false;
                 deleteImageArray.clear();
                 imageView_all_clear_filter();
-
+                imageViews.clear();
+                checkBoxes.clear();
             }
         });
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
 
                 deleteImageArray.clear();
                 image_refresh();
+                imageViews.clear();
+                checkBoxes.clear();
+
 
                 Log.i("CTFrame",String.valueOf(success));
                 selectMode = false;
@@ -315,6 +321,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onClick(View view, int position, ImageView imageView, CheckBox checkBox) {
                 if(selectMode)
                 {
                     try{
@@ -328,6 +344,10 @@ public class MainActivity extends AppCompatActivity {
                                 deleteImageArray.remove(i);
                             }
                         }
+                        checkBoxes.remove(checkBox);
+                        imageViews.remove(imageView);
+                        checkBox.setVisibility(View.INVISIBLE);
+                        checkBox.setChecked(false);
                     }catch (Exception e){
                         Log.i("CTFrameTest",e.toString());
                         imageView.setColorFilter(Color.argb(140,150,150,150));
@@ -335,6 +355,12 @@ public class MainActivity extends AppCompatActivity {
                         if(!imageViews.contains(imageView)){
                             imageViews.add(imageView);
                         }
+                        if(!checkBoxes.contains(checkBox))
+                        {
+                            checkBoxes.add(checkBox);
+                        }
+                        checkBox.setVisibility(View.VISIBLE);
+                        checkBox.setChecked(true);
                     }
                 }
                 else
@@ -347,14 +373,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onLongClick(View view, int position, ImageView imageView){
+            public void onLongClick(View view, int position, ImageView imageView,CheckBox checkBox){
                 Log.i("CTFrameTest",imageView.toString());
                 imageView.setColorFilter(Color.argb(140,150,150,150));
                 selectMode = true;
                 btn_cancel.setVisibility(View.VISIBLE);
                 btn_delete.setVisibility(View.VISIBLE);
                 imageViews.add(imageView);
+                checkBoxes.add(checkBox);
                 deleteImageArray.add(imageArray.get(position));
+                checkBox.setVisibility(View.VISIBLE);
+                checkBox.setChecked(true);
             }
         };
 
@@ -564,6 +593,11 @@ public class MainActivity extends AppCompatActivity {
             for(ImageView iv : imageViews)
             {
                 iv.clearColorFilter();
+            }
+            for(CheckBox cb : checkBoxes)
+            {
+                cb.setChecked(false);
+                cb.setVisibility(View.INVISIBLE);
             }
         }catch (Exception e)
         {

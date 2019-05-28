@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.SearchView;
 
@@ -202,6 +203,16 @@ public class Frag3 extends Fragment {
 
             @Override
             public void onLongClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
+
+            }
+
+            @Override
+            public void onLongClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
 
             }
         };

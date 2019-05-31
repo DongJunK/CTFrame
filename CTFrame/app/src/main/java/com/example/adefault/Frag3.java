@@ -207,7 +207,7 @@ public class Frag3 extends Fragment {
             }
 
             @Override
-            public void onClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
+            public void onClick(int adapterPosition, ImageView imageView, CheckBox checkBox) {
 
             }
 

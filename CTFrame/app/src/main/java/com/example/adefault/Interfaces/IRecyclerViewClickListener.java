@@ -8,6 +8,6 @@ import android.widget.ImageView;
 public interface IRecyclerViewClickListener {
     void onClick(View view, int position, ImageView imageView);
     void onLongClick(View view, int position, ImageView imageView);
-    void onClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox);
+    void onClick(int adapterPosition, ImageView imageView, CheckBox checkBox);
     void onLongClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox);
 }

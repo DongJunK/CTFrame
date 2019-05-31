@@ -212,7 +212,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
             }
 
             @Override
-            public void onClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
+            public void onClick(int adapterPosition, ImageView imageView, CheckBox checkBox) {
 
             }
 

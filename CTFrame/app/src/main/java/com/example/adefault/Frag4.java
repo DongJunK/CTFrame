@@ -248,6 +248,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
 
         //FullScreen 엑티비티 실행 , 저장 실행 되는곳
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
+
             @Override
             public void onClick(View view, int position, ImageView imageView) {
                 //open full screen activity with omage clicked
@@ -271,7 +272,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
             }
 
             @Override
-            public void onClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
+            public void onClick(int adapterPosition, ImageView imageView, CheckBox checkBox) {
 
             }
 

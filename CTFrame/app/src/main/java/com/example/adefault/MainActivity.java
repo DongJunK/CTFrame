@@ -19,6 +19,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.GridView;
@@ -26,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adefault.Adapters.GalleryImageAdapter;
 import com.example.adefault.Adapters.GalleryImageAdapter_mainpage;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.Interfaces.SendDataToServer;
@@ -42,7 +44,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     public static String loginId = null;
     Uri photoUri,albumUri = null;
-    boolean selectMode = false;
+    public static boolean selectMode = false;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
     final int REQUEST_DRIVE = 3;
@@ -166,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView_all_clear_filter();
                 imageViews.clear();
                 checkBoxes.clear();
+                GalleryImageAdapter_mainpage.itemStateArray.clear();
             }
         });
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 image_refresh();
                 imageViews.clear();
                 checkBoxes.clear();
+                GalleryImageAdapter_mainpage.itemStateArray.clear();
 
 
                 Log.i("CTFrame",String.valueOf(success));
@@ -317,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
         image_list_view();
 
+        /*****************************************************************************************/
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
 
             @Override
@@ -330,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onClick(View view, int position, ImageView imageView, CheckBox checkBox) {
+            public void onClick(int position, ImageView imageView, CheckBox checkBox) {
                 if(selectMode)
                 {
                     try{

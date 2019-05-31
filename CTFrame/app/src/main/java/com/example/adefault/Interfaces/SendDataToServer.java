@@ -22,12 +22,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
 
     int serverResponseCode = 0;
     private int responseCode = 0;
-    String upLoadServerUri = null;
     Bitmap bitmap;
-    public SendDataToServer(String upLoadServerUri)
-    {
-        this.upLoadServerUri = upLoadServerUri;
-    }
     public SendDataToServer(){}
 
     @Override
@@ -105,7 +100,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
     //*******************************************************************************************/
     // uploadFile
     //*******************************************************************************************/
-    public int uploadFile(String loginId, String sourceFileUri) {
+    public int uploadFile(String upLoadServerUrl,String loginId, String sourceFileUri) {
         Log.i("CTFrame", "uploadFile :: 실행 ");
         Log.i("CTFrame", sourceFileUri);
 
@@ -120,7 +115,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
         File sourceFile = new File(sourceFileUri);
-
+        while(!sourceFile.isFile()){}
         if (!sourceFile.isFile()) {
             Log.i("CTFrame", "파일이 존재하지 않음");
 
@@ -130,9 +125,10 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
         {
             try {
                 Log.i("CTFrame", "try로 들어옴");
+                Thread.sleep(5000);
                 // open a URL connection to the Servlet
                 FileInputStream fileInputStream = new FileInputStream(sourceFile);
-                URL url = new URL(upLoadServerUri);
+                URL url = new URL("http://27.113.62.168:8080/index.php/insert_image");
 
                 // Open a HTTP  connection to  the URL
                 conn = (HttpURLConnection) url.openConnection();

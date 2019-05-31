@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import com.example.adefault.Adapters.GalleryImageAdapter;
@@ -207,6 +208,16 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onClick(int adapterPosition, ImageView imageView, CheckBox checkBox) {
+
+            }
+
+            @Override
+            public void onLongClick(View v, int adapterPosition, ImageView imageView, CheckBox checkBox) {
 
             }
         };

@@ -77,10 +77,19 @@ public class Activity_Drive extends Activity {
         dm.enqueue(req); // Must
         Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
         req.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-        SendDataToServer sendImage = new SendDataToServer(upLoadServerUri);
-        int serverResponseCode = sendImage.uploadFile(loginId, fileURI);
 
-        Log.i("CTFrame",Integer.toString(serverResponseCode));
+        Log.i("CTFrame","Drive Download : "+fileURI);
+
+        new Thread(){
+            @Override
+            public void run() {
+                SendDataToServer sendImage = new SendDataToServer();
+                int serverResponseCode = sendImage.uploadFile(upLoadServerUri, loginId, fileURI);
+                Log.i("CTFrame",Integer.toString(serverResponseCode));
+            }
+        }.start();
+
+
 
     }
 

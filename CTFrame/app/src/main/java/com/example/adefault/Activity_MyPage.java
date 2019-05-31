@@ -18,10 +18,10 @@ import org.json.JSONObject;
 
 public class Activity_MyPage extends AppCompatActivity {
 
-    EditText edt_email, edt_name, edt_favorite, edt_password;
+    EditText edt_email, edt_name, edt_favorite, edt_password, edt_birth;
     Button btn_change;
     ImageButton btn_statistics;
-    String name, favorite;
+    String name, favorite, birth;
 
     String responseMsg;
 
@@ -36,18 +36,19 @@ public class Activity_MyPage extends AppCompatActivity {
         edt_name = (EditText)findViewById(R.id.edt_name);
         edt_favorite = (EditText)findViewById(R.id.edt_favorite);
         edt_password = (EditText)findViewById(R.id.edt_password);
+        edt_birth = (EditText)findViewById(R.id.edt_birth);
 
         btn_statistics = (ImageButton)findViewById(R.id.btn_statistics);
         btn_change = (Button)findViewById(R.id.btn_change);
 
         favorite = "";
 
-
         MyPageRequest();
 
         edt_email.setText(MainActivity.loginId);
         edt_name.setText(name);
         edt_favorite.setText(favorite);
+        edt_birth.setText(birth);
 
         btn_change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +107,7 @@ public class Activity_MyPage extends AppCompatActivity {
                     //sign_in 의 받을 값은 Header, responseMsg이다
                     //section 5 받을 값만 받으면 된다 ()안에 값은 서버랑 일치 시키도록해야함
                     name = obj.getString("name");
+                    birth = obj.getString("birth");
 
                     JSONArray tagArray = obj.getJSONArray("responseMsg");
                     for(int i=0;i<tagArray.length();i++)

@@ -19,12 +19,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adefault.Adapters.GalleryImageAdapter;
 import com.example.adefault.Adapters.GalleryImageAdapter_mainpage;
 import com.example.adefault.Interfaces.IRecyclerViewClickListener;
 import com.example.adefault.Interfaces.SendDataToServer;
@@ -41,15 +44,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     public static String loginId = null;
     Uri photoUri,albumUri = null;
-    boolean selectMode = false;
+    public static boolean selectMode = false;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CROP_IMAGE = 2;
     final int REQUEST_DRIVE = 3;
     final int REQUEST_PIXABAY = 4;
     String mCurrentPhotoPath;
-    String upLoadServerUri = "http://27.113.62.168:8080/index.php/insert_image";
+    String upLoadServerUrl = "http://27.113.62.168:8080/index.php/insert_image";
     private TextView mTextMessage;
     static ArrayList<String> imageArray = new ArrayList<>();
+    ArrayList<CheckBox> checkBoxes = new ArrayList<>();
     ArrayList<String> deleteImageArray = new ArrayList<>();
     RecyclerView recyclerView;
     static GalleryImageAdapter_mainpage galleryImageAdapter;
@@ -162,7 +166,9 @@ public class MainActivity extends AppCompatActivity {
                 selectMode = false;
                 deleteImageArray.clear();
                 imageView_all_clear_filter();
-
+                imageViews.clear();
+                checkBoxes.clear();
+                GalleryImageAdapter_mainpage.itemStateArray.clear();
             }
         });
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
 
                 deleteImageArray.clear();
                 image_refresh();
+                imageViews.clear();
+                checkBoxes.clear();
+                GalleryImageAdapter_mainpage.itemStateArray.clear();
+
 
                 Log.i("CTFrame",String.valueOf(success));
                 selectMode = false;
@@ -262,8 +272,8 @@ public class MainActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            SendDataToServer sendImage = new SendDataToServer(upLoadServerUri);
-                            int serverResponseCode = sendImage.uploadFile(loginId, albumUri.getPath());
+                            SendDataToServer sendImage = new SendDataToServer();
+                            int serverResponseCode = sendImage.uploadFile(upLoadServerUrl,loginId, albumUri.getPath());
 
                             if(serverResponseCode == 200){
                                 runOnUiThread(new Runnable() {
@@ -286,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case REQUEST_DRIVE:
+
                     image_refresh();
                     break;
                 case REQUEST_PIXABAY :
@@ -310,16 +321,27 @@ public class MainActivity extends AppCompatActivity {
 
         image_list_view();
 
+        /*****************************************************************************************/
         final IRecyclerViewClickListener listener = new IRecyclerViewClickListener() {
 
             @Override
             public void onClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position, ImageView imageView) {
+
+            }
+
+            @Override
+            public void onClick(int position, ImageView imageView, CheckBox checkBox) {
                 if(selectMode)
                 {
-
                     try{
                         Log.i("CTFrameTest",imageView.getColorFilter().toString());
                         imageView.clearColorFilter();
+
                         for(int i=0;i<deleteImageArray.size();++i)
                         {
                             if(deleteImageArray.get(i).equals(imageArray.get(position)))
@@ -327,6 +349,10 @@ public class MainActivity extends AppCompatActivity {
                                 deleteImageArray.remove(i);
                             }
                         }
+                        checkBoxes.remove(checkBox);
+                        imageViews.remove(imageView);
+                        checkBox.setVisibility(View.INVISIBLE);
+                        checkBox.setChecked(false);
                     }catch (Exception e){
                         Log.i("CTFrameTest",e.toString());
                         imageView.setColorFilter(Color.argb(140,150,150,150));
@@ -334,6 +360,12 @@ public class MainActivity extends AppCompatActivity {
                         if(!imageViews.contains(imageView)){
                             imageViews.add(imageView);
                         }
+                        if(!checkBoxes.contains(checkBox))
+                        {
+                            checkBoxes.add(checkBox);
+                        }
+                        checkBox.setVisibility(View.VISIBLE);
+                        checkBox.setChecked(true);
                     }
                 }
                 else
@@ -344,19 +376,20 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("POSITION", position);
                     startActivity(i);
                 }
-
             }
             @Override
-            public void onLongClick(View view, int position, ImageView imageView){
+            public void onLongClick(View view, int position, ImageView imageView,CheckBox checkBox){
                 Log.i("CTFrameTest",imageView.toString());
                 imageView.setColorFilter(Color.argb(140,150,150,150));
                 selectMode = true;
                 btn_cancel.setVisibility(View.VISIBLE);
                 btn_delete.setVisibility(View.VISIBLE);
                 imageViews.add(imageView);
+                checkBoxes.add(checkBox);
                 deleteImageArray.add(imageArray.get(position));
+                checkBox.setVisibility(View.VISIBLE);
+                checkBox.setChecked(true);
             }
-
         };
 
         // this대신 getActivity 사용
@@ -565,6 +598,11 @@ public class MainActivity extends AppCompatActivity {
             for(ImageView iv : imageViews)
             {
                 iv.clearColorFilter();
+            }
+            for(CheckBox cb : checkBoxes)
+            {
+                cb.setChecked(false);
+                cb.setVisibility(View.INVISIBLE);
             }
         }catch (Exception e)
         {

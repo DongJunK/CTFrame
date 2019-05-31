@@ -1,17 +1,25 @@
 package com.example.adefault;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adefault.Interfaces.SendDataToServer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Activity_Signup extends AppCompatActivity {
 
@@ -20,10 +28,29 @@ public class Activity_Signup extends AppCompatActivity {
     String authenticode;        //서버로 부터 받을 authenticode
     boolean isCheck, isEmailCheck;        //email 인증이버튼이 눌렸는지 여부
     int responseMsg;        //회원가입 성공여부
+    Spinner sp_year, sp_month, sp_day;        //year Spinnder
+    ArrayList<String> year, month, day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        year = new ArrayList<String>();
+        month = new ArrayList<String>();
+        day = new ArrayList<String>();
+        for(int i=1930; i<=2019; i++)
+        {
+            year.add(i+"");
+        }
+        for(int i=1; i<=12; i++)
+        {
+            month.add(i+"");
+        }
+        for(int i=1; i<=31; i++)
+        {
+            day.add(i+"");
+        }
 
         //리소스 매칭
         edt_email = (EditText)findViewById(R.id.edt_email);
@@ -31,6 +58,52 @@ public class Activity_Signup extends AppCompatActivity {
         edt_password = (EditText)findViewById(R.id.edt_password);
         edt_password_confirm = (EditText)findViewById(R.id.edt_password_confirm);
         edt_name = (EditText)findViewById(R.id.edt_name);
+        sp_year = (Spinner)findViewById(R.id.sp_year);
+        sp_month = (Spinner)findViewById(R.id.sp_month);
+        sp_day = (Spinner)findViewById(R.id.sp_day);
+
+        ArrayAdapter<String> spinnderAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, year);
+        sp_year.setAdapter(spinnderAdapter);
+        sp_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnderAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, month);
+        sp_month.setAdapter(spinnderAdapter);
+        sp_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnderAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, day);
+        sp_day.setAdapter(spinnderAdapter);
+        sp_day.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         btn_email_check = (Button)findViewById(R.id.btn_email_check);
         btn_email_code = (Button)findViewById(R.id.btn_email_code);
@@ -200,6 +273,7 @@ public class Activity_Signup extends AppCompatActivity {
             post_dict.put("email" , edt_email.getText().toString());
             post_dict.put("pass" , edt_password.getText().toString());
             post_dict.put("name" , edt_name.getText().toString());
+            post_dict.put("birth",sp_year.getSelectedItem().toString() + sp_month.getSelectedItem().toString() + sp_day.getSelectedItem().toString());
 
         } catch (JSONException e) {
             e.printStackTrace();

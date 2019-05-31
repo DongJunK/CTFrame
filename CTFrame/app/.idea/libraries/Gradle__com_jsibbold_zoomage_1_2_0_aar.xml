@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.jsibbold:zoomage:1.2.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca213aad1280ce536854ff4bdec00e25/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/43541c9c6a1fb03c7c7c1bdace4b9590/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca213aad1280ce536854ff4bdec00e25/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca213aad1280ce536854ff4bdec00e25/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/43541c9c6a1fb03c7c7c1bdace4b9590/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/43541c9c6a1fb03c7c7c1bdace4b9590/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

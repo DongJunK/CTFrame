@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.unity3d.player.UnityPlayerActivity;
+
+
 public class Activity_Select extends AppCompatActivity {
 
     private final int INTERNET_PERMISSION_CODE = 1;
@@ -42,13 +45,13 @@ public class Activity_Select extends AppCompatActivity {
 
         if (mWifi.isConnected()) {
             // Do whatever
-            Toast.makeText(this, "와이파이가 연결되었습다", Toast.LENGTH_SHORT).show();
-        }else  {
-
+            Toast.makeText(this, "네트워크가 연결되었습니다", Toast.LENGTH_SHORT).show();
+        }
+        else if(!mWifi.isConnected()){
             requestInternetPermission();
 //            enableWifi();
            // wifi.setWifiEnabled(true);
-            Toast.makeText(this, "와이파이가 연결되어있지 않습니다", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "네트워크가 연결되어있지 않습니다", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -87,17 +90,21 @@ public class Activity_Select extends AppCompatActivity {
             }
         });
     }
+
     private void requestInternetPermission() {
 
           new AlertDialog.Builder(this)
                   .setTitle("허용이 필요합니다")
-                  .setMessage("와이파이 사용을 위해 허용이 필요합니다.")
+                  .setMessage("네트워크 사용을 위해 허용이 필요합니다.")
                   .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                       @Override
                       public void onClick(DialogInterface dialog, int which) {
                     //      enableWifi
                           WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                           wifi.setWifiEnabled(true);
+                          Intent intent = new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK);
+                          startActivity(intent);
+
 
                           ActivityCompat.requestPermissions(Activity_Select.this,
                                   new String[]{Manifest.permission.ACCESS_WIFI_STATE}, INTERNET_PERMISSION_CODE);

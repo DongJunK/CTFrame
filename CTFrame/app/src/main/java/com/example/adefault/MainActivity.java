@@ -342,12 +342,16 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("CTFrameTest",imageView.getColorFilter().toString());
                         imageView.clearColorFilter();
 
-                        for(int i=0;i<deleteImageArray.size();++i)
-                        {
-                            if(deleteImageArray.get(i).equals(imageArray.get(position)))
-                            {
+                        for(int i=0;i<deleteImageArray.size();++i) {
+                            if (deleteImageArray.get(i).equals(imageArray.get(position))) {
+                                Log.i("CTFrame", "i :::"+deleteImageArray.get(i));
                                 deleteImageArray.remove(i);
                             }
+                        }
+                        deleteImageArray.remove(imageArray.get(position));
+                        Log.i("CTFrame","---------------------------------------------");
+                        for(int i=0;i<deleteImageArray.size();++i) {
+                            Log.i("CTFrame", deleteImageArray.get(i));
                         }
                         checkBoxes.remove(checkBox);
                         imageViews.remove(imageView);

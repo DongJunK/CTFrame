@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.adefault">
+    package="com.ctman.adefault">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -24,22 +24,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Slideshow_Activity"></activity>
-        <activity android:name=".Activity_Select" />
-        <activity android:name=".Activity_Fullscreen_mainpage" />
-        <activity android:name=".Activity_Pixabay_Category" />
+        <activity android:name="com.ctman.adefault.Slideshow_Activity"></activity>
+        <activity android:name="com.ctman.adefault.Activity_Select" />
+        <activity android:name="com.ctman.adefault.Activity_Fullscreen_mainpage" />
+        <activity android:name="com.ctman.adefault.Activity_Pixabay_Category" />
         <activity
-            android:name=".Activity_Fullscreen"
+            android:name="com.ctman.adefault.Activity_Fullscreen"
             android:configChanges="keyboardHidden|orientation" />
         <activity
-            android:name=".Activity_Pixabay"
+            android:name="com.ctman.adefault.Activity_Pixabay"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden" />
-        <activity android:name=".Activity_Drive" />
-        <activity android:name=".UnityPlayerActivity" />
-        <activity android:name=".Activity_MyPage" />
-        <activity android:name=".Activity_Signup" />
-        <activity android:name=".Activity_Statistics" />
-        <activity android:name=".Activiy_Splash">
+        <activity android:name="com.ctman.adefault.Activity_Drive" />
+        <activity android:name="com.ctman.adefault.UnityPlayerActivity" />
+        <activity android:name="com.ctman.adefault.Activity_MyPage" />
+        <activity android:name="com.ctman.adefault.Activity_Signup" />
+        <activity android:name="com.ctman.adefault.Activity_Statistics" />
+        <activity android:name="com.ctman.adefault.Activiy_Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,10 +47,10 @@
             </intent-filter>
         </activity> <!-- android:windowSoftInputMode="adjustNothing"은 키보드가 레이아웃에 영향을 주지 않는다는 코드이다 -->
         <activity
-            android:name=".Activity_Login"
+            android:name="com.ctman.adefault.Activity_Login"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.ctman.adefault.MainActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden" />
     </application>
 

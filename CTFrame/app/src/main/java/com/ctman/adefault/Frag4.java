@@ -136,7 +136,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         thread = new Thread(){
             public void run(){
                 //로그
-                Log.i("check", "요청 페이지 :" + page_num);
+                //Log.i("check", "요청 페이지 :" + page_num);
                 ArrayList<String> test = default_pixa(page_num);
 
                 //Bundle bun = new Bundle();
@@ -151,7 +151,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         };
 
         //로그
-        Log.i("check", "스레드 시작");
+        //Log.i("check", "스레드 시작");
         thread.start();
     }
 
@@ -167,7 +167,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         int Page_num = page;        //페이지 값
         String url = "https://pixabay.com/api/?key=" + API_KEY + "&page=" + Page_num + "&image_type=photo&editors_choice=true";      //검색 값
         //로그
-        Log.i("check", url);
+        //Log.i("check", url);
         BufferedReader reader = null;       //결과값을 읽기 위한 버퍼리더
         StringBuffer tmp = null;        //결과값을 임시 저장할 스트링버퍼
         String result = null;       //결과값을 임시 저장할 string 변수
@@ -209,7 +209,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
         catch (Exception e){
             default_pixa(page);
             //로그
-            Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
+            //Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
         }
 
         //이미지 array list 반환
@@ -297,7 +297,7 @@ public class Frag4 extends android.support.v4.app.Fragment {
                     //Log.i("check", "리스트 상단");
                 }
                 else if(!recyclerView.canScrollVertically(1)){
-                    Log.i("check", "리스트 하단");
+                    //Log.i("check", "리스트 하단");
 
                     //플래그
                     //쓰레드 도는중 아니면(초기화는 핸들러에서 초기화)

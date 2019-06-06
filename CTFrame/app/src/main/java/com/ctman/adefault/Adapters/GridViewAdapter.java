@@ -60,7 +60,7 @@ public class GridViewAdapter extends BaseAdapter {
             Thread mThread = new Thread() {
                 public void run() {
                     try {
-                        Log.i("CTFrame",pic);
+                        //Log.i("CTFrame",pic);
                         URL url = new URL(pic);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setDoInput(true);

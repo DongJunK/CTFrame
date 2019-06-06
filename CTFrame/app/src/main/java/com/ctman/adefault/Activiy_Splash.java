@@ -30,7 +30,7 @@ public class Activiy_Splash extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(Activiy_Splash.this, Activity_Select.class);
                 startActivity(intent);
-                Log.i("fail_reason", "실행 됨");
+                //Log.i("fail_reason", "실행 됨");
                 finish();
             }
         }, 9000);

@@ -71,7 +71,7 @@ public class Frag2 extends Fragment {
                 Object object = categories.get(position).getCategoryName();
                 String val = String.valueOf(object);
 
-                Log.i("check", val);
+                //Log.i("check", val);
                 intent = new Intent(getActivity(), Activity_Pixabay_Category.class);
                 intent.putExtra("category", val);
                 startActivity(intent);

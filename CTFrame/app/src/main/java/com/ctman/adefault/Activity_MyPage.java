@@ -119,12 +119,12 @@ public class Activity_MyPage extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //Log.i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }
@@ -166,12 +166,12 @@ public class Activity_MyPage extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //Log.i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }

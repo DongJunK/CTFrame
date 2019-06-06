@@ -108,14 +108,14 @@ public class Activity_Login extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //Log.i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
-        Log.i("returnMsg", responseMsg+"");
+        //Log.i("returnMsg", responseMsg+"");
     }
 }

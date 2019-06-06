@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 msgToast("삭제되었습니다!");
                 for(int i=0;i<deleteImageArray.size();++i)
                 {
-                    Log.i("CTFrame",deleteImageArray.get(i));
+                    //Log.i("CTFrame",deleteImageArray.get(i));
                 }
                 int success = send_to_server_delete_image();
 
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 GalleryImageAdapter_mainpage.itemStateArray.clear();
 
 
-                Log.i("CTFrame",String.valueOf(success));
+                //Log.i("CTFrame",String.valueOf(success));
                 selectMode = false;
 
             }
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 case REQUEST_TAKE_PHOTO :   //앨범에서 가져오기
 
-                    Log.i("CTtest", "갤러리에서 사진 눌림");
+                    //Log.i("CTtest", "갤러리에서 사진 눌림");
                     File albumFile= null;
 
                     try
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
                     photoUri = data.getData();  //앨범 이미지의 경f로
 
-                    Log.i("CTFrame","크롭이미지 직전 : "+photoUri.getPath());
+                    //Log.i("CTFrame","크롭이미지 직전 : "+photoUri.getPath());
                     cropImage(photoUri);
                     break;
                 case REQUEST_CROP_IMAGE :
@@ -337,26 +337,26 @@ public class MainActivity extends AppCompatActivity {
                 if(selectMode)
                 {
                     try{
-                        Log.i("CTFrameTest",imageView.getColorFilter().toString());
+                        //Log.i("CTFrameTest",imageView.getColorFilter().toString());
                         imageView.clearColorFilter();
 
                         for(int i=0;i<deleteImageArray.size();++i) {
                             if (deleteImageArray.get(i).equals(imageArray.get(position))) {
-                                Log.i("CTFrame", "i :::"+deleteImageArray.get(i));
+                                //Log.i("CTFrame", "i :::"+deleteImageArray.get(i));
                                 deleteImageArray.remove(i);
                             }
                         }
                         deleteImageArray.remove(imageArray.get(position));
-                        Log.i("CTFrame","---------------------------------------------");
+                        //Log.i("CTFrame","---------------------------------------------");
                         for(int i=0;i<deleteImageArray.size();++i) {
-                            Log.i("CTFrame", deleteImageArray.get(i));
+                            //Log.i("CTFrame", deleteImageArray.get(i));
                         }
                         checkBoxes.remove(checkBox);
                         imageViews.remove(imageView);
                         checkBox.setVisibility(View.INVISIBLE);
                         checkBox.setChecked(false);
                     }catch (Exception e){
-                        Log.i("CTFrameTest",e.toString());
+                        //Log.i("CTFrameTest",e.toString());
                         imageView.setColorFilter(Color.argb(140,150,150,150));
                         deleteImageArray.add(imageArray.get(position));
                         if(!imageViews.contains(imageView)){
@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position, ImageView imageView,CheckBox checkBox){
-                Log.i("CTFrameTest",imageView.toString());
+                //Log.i("CTFrameTest",imageView.toString());
                 imageView.setColorFilter(Color.argb(140,150,150,150));
                 selectMode = true;
                 btn_cancel.setVisibility(View.VISIBLE);
@@ -484,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
             try
             {
                 obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict),"list_view").get());
-                Log.i("CTFrame","여기까지");
+                //Log.i("CTFrame","여기까지");
 
                 try
                 {
@@ -498,12 +498,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("CTFrame", "JSONError : " + e.toString());
+                    //Log.i("CTFrame", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("CTFrame",e.toString());
+                //Log.i("CTFrame",e.toString());
             }
         }
 
@@ -527,7 +527,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //수정
                 if(deleteImageArray.get(i).contains("is_auto")) {
-                    Log.i("pixa_down", "사진 한장 다운");
+                    //Log.i("pixa_down", "사진 한장 다운");
                     //핸들러 한테 전송 다시 다운 받아라 팍씨
                     Message msg = mHandler.obtainMessage(redown_pixa);
                     mHandler.sendMessage(msg);
@@ -535,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
             }
             post_dict.put("image",jsonArray);
 
-            Log.i("CTFrame",String.valueOf(post_dict));
+            //Log.i("CTFrame",String.valueOf(post_dict));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -544,12 +544,12 @@ public class MainActivity extends AppCompatActivity {
         if (post_dict.length() > 0) {
             try {
                 obj = new JSONObject(sendDataToServer.execute(String.valueOf(post_dict), "delete_image").get());
-                Log.i("CTFrame", "여기까지");
+                //Log.i("CTFrame", "여기까지");
 
                 responseMsg = obj.getInt("responseMsg");
 
             } catch (Exception e) {
-                Log.i("CTFrame", e.toString());
+                //Log.i("CTFrame", e.toString());
             }
         }
         return responseMsg;
@@ -558,7 +558,7 @@ public class MainActivity extends AppCompatActivity {
     //픽사베이 지운 만큼 다시 다운로드
     public static void redownpixa(int count)
     {
-        Log.i("pixa_down", ">>>>>>자동 다운로드 함수 시작  :::::: "+count+"개");
+        //Log.i("pixa_down", ">>>>>>자동 다운로드 함수 시작  :::::: "+count+"개");
         //section 0 여기 건들지마
         JSONObject obj = new JSONObject();
         SendDataToServer sendDataToServer = new SendDataToServer();
@@ -586,7 +586,7 @@ public class MainActivity extends AppCompatActivity {
             }
             catch (Exception e)
             {
-                Log.i("CTFrame",e.toString());
+                //Log.i("CTFrame",e.toString());
             }
         }
     }

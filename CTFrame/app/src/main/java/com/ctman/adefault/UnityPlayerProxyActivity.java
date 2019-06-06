@@ -13,7 +13,7 @@ public class UnityPlayerProxyActivity extends Activity
 {
     @Override protected void onCreate (Bundle savedInstanceState)
     {
-        Log.w("Unity", "UnityPlayerNativeActivity has been deprecated, please update your AndroidManifest to use UnityPlayerActivity instead");
+        //Log.w("Unity", "UnityPlayerNativeActivity has been deprecated, please update your AndroidManifest to use UnityPlayerActivity instead");
         super.onCreate(savedInstanceState);
 
         Intent intent = new Intent(this, UnityPlayerActivity.class);

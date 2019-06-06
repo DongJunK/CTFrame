@@ -90,7 +90,7 @@ public class Frag3 extends Fragment {
         int Page_num = page;        //페이지 값
         String url = "https://pixabay.com/api/?key=" + API_KEY + "&q=" + search_val + "&page=" + Page_num + "&image_type=photo";      //검색 값
         //로그
-        Log.i("check", url);
+        //Log.i("check", url);
         BufferedReader reader = null;       //결과값을 읽기 위한 버퍼리더
         StringBuffer tmp = null;        //결과값을 임시 저장할 스트링버퍼
         String result = null;       //결과값을 임시 저장할 string 변수
@@ -135,7 +135,7 @@ public class Frag3 extends Fragment {
         }
         catch (Exception e){
             //로그
-            Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
+            //Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
         }
 
         //이미지 array list 반환
@@ -228,7 +228,7 @@ public class Frag3 extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 //검색어 입력 후 버튼 클릭하면 일어나는 동작
                 //로그
-                Log.i("check", "삭제이전 " + Integer.toString(images.size()));
+                //Log.i("check", "삭제이전 " + Integer.toString(images.size()));
 
 
                 //galleryImageAdapter.notifyDataSetChanged();     //재 갱신
@@ -239,7 +239,7 @@ public class Frag3 extends Fragment {
                     galleryImageAdapter.notifyDataSetChanged();     //재 갱신
                     //clear(images, galleryImageAdapter);     //내용 지우는 함수 실행
                     //로그
-                    Log.i("check", "삭제이후 " + Integer.toString(images.size()));
+                    //Log.i("check", "삭제이후 " + Integer.toString(images.size()));
                 }
 
                 page_num = 1;       //검색 페이지는 1페이지로 다시 초기화
@@ -248,7 +248,7 @@ public class Frag3 extends Fragment {
                 thread = new Thread(){
                     public void run(){
                         //로그
-                        Log.i("check", "검색 요청 페이지 :" + page_num);
+                        //Log.i("check", "검색 요청 페이지 :" + page_num);
                         ArrayList<String> test = default_pixa(page_num);
 
                         Bundle bun = new Bundle();
@@ -261,7 +261,7 @@ public class Frag3 extends Fragment {
 
                 thread.start();
 
-                Log.i("check", query);
+                //Log.i("check", query);
                 return true;
             }
 
@@ -282,14 +282,14 @@ public class Frag3 extends Fragment {
                     //Log.i("check", "리스트 상단");
                 }
                 else if(!recyclerView.canScrollVertically(1)){
-                    Log.i("check", "리스트 하단");
+                    //Log.i("check", "리스트 하단");
 
                     if(refresh_check) {
                         page_num+=1;
                         thread = new Thread() {
                             public void run() {
                                 //로그
-                                Log.i("check", "요청 페이지 :" + page_num);
+                                //Log.i("check", "요청 페이지 :" + page_num);
                                 ArrayList<String> test = default_pixa(page_num);
 
                                 Bundle bun = new Bundle();

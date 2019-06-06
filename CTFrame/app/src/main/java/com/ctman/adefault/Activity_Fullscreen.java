@@ -50,15 +50,15 @@ public class Activity_Fullscreen extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Log.i("check", "버튼 눌림");
+                //Log.i("check", "버튼 눌림");
                 email = MainActivity.loginId;
 
-                Log.i("check", email);
+                //.i("check", email);
                 url = images.get(position).get_url();
                 tag = images.get(position).get_tag();
 
-                Log.i("저장 URL check", url);
-                Log.i("저장 TAG check", tag);
+                //Log.i("저장 URL check", url);
+                //Log.i("저장 TAG check", tag);
 
                 //다운로드 php함수 호출
                 DownLoadPixa(v);
@@ -88,9 +88,9 @@ public class Activity_Fullscreen extends AppCompatActivity {
                 int second = i;
 
                 if(first!=second){
-                    Log.i("check", " 변경전 " + position);
+                    //Log.i("check", " 변경전 " + position);
                     position = i;
-                    Log.i("check", " 변경후 " + position);
+                    //Log.i("check", " 변경후 " + position);
                 }
             }
             @Override
@@ -153,7 +153,7 @@ public class Activity_Fullscreen extends AppCompatActivity {
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }

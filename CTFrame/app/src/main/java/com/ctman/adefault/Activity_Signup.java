@@ -134,7 +134,7 @@ public class Activity_Signup extends AppCompatActivity {
             public void onClick(View view) {
                 if(isCheck)
                 {
-                    Log.i("authenticode", "autenticode :: " + authenticode);
+                    //Log.i("authenticode", "autenticode :: " + authenticode);
                     //해당 인증코드 확인
                     if(edt_email_code.getText().toString().equals(authenticode))
                     {
@@ -241,17 +241,17 @@ public class Activity_Signup extends AppCompatActivity {
                     //sign_in 의 받을 값은 Header, responseMsg이다
                     //section 5 받을 값만 받으면 된다 ()안에 값은 서버랑 일치 시키도록해야함
                     authenticode = obj.getString("responseMsg");
-                    Log.i("authenticode", "autenticode :: " + authenticode);
+                    //Log.i("authenticode", "autenticode :: " + authenticode);
                     //section 5
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //Log.i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }
@@ -295,12 +295,12 @@ public class Activity_Signup extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }
@@ -340,12 +340,12 @@ public class Activity_Signup extends AppCompatActivity {
                 }
                 catch (JSONException e)
                 {
-                    Log.i("JSONException", "JSONError : " + e.toString());
+                    //Log.i("JSONException", "JSONError : " + e.toString());
                 }
             }
             catch (Exception e)
             {
-                Log.i("Exception",e.toString());
+                //Log.i("Exception",e.toString());
             }
         }
     }

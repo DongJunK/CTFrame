@@ -86,7 +86,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
         int Page_num = page;        //페이지 값
         String url = "https://pixabay.com/api/?key=" + API_KEY + "&category=" + category + "&page=" + Page_num + "&image_type=photo";      //검색 값
         //로그
-        Log.i("check", url);
+        //Log.i("check", url);
         BufferedReader reader = null;       //결과값을 읽기 위한 버퍼리더
         StringBuffer tmp = null;        //결과값을 임시 저장할 스트링버퍼
         String result = null;       //결과값을 임시 저장할 string 변수
@@ -131,7 +131,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
         }
         catch (Exception e){
             //로그
-            Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
+            //Log.i("pixacheck", "default_pixa  예외처리됨\n" + e.toString());
         }
 
         //이미지 array list 반환
@@ -162,7 +162,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
         thread = new Thread(){
             public void run(){
                 //로그
-                Log.i("check", "요청 페이지 :" + page_num);
+                //Log.i("check", "요청 페이지 :" + page_num);
                 ArrayList<String> test = default_pixa(page_num);
 
                 Bundle bun = new Bundle();
@@ -177,7 +177,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
         };
 
         //로그
-        Log.i("check", "스레드 시작");
+        //Log.i("check", "스레드 시작");
         thread.start();
 
         Intent intent = getIntent();        //넘겨 받은 값 가져오기 위해 intent 생성
@@ -237,7 +237,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
                     //Log.i("check", "리스트 상단");
                 }
                 else if(!recyclerView.canScrollVertically(1)){
-                    Log.i("check", "리스트 하단");
+                    //Log.i("check", "리스트 하단");
 
 
                     if(refresh_check) {
@@ -245,7 +245,7 @@ public class Activity_Pixabay_Category extends AppCompatActivity {
                         thread = new Thread() {
                             public void run() {
                                 //로그
-                                Log.i("check", "요청 페이지 :" + page_num);
+                                //Log.i("check", "요청 페이지 :" + page_num);
                                 ArrayList<String> test = default_pixa(page_num);
 
                                 Bundle bun = new Bundle();

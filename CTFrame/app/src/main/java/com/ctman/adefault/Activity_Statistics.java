@@ -187,10 +187,10 @@ public class Activity_Statistics extends AppCompatActivity {
                         }
                     }
                 } catch (JSONException e) {
-                    Log.i("CTFrame", "JSONError : " + e.toString());
+                    //Log.i("CTFrame", "JSONError : " + e.toString());
                 }
             } catch (Exception e) {
-                Log.i("Exception", e.toString());
+                //Log.i("Exception", e.toString());
             }
         }
     }

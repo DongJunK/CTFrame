@@ -38,7 +38,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
         BufferedReader reader = null;
         try {
             URL url = new URL("http://27.113.62.168:8080/index.php/"+params[1]);
-            Log.w("url","27.113.62.168:8080/index.php/"+params[1]);
+            //Log.w("url","27.113.62.168:8080/index.php/"+params[1]);
             urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setReadTimeout(5000);
@@ -78,7 +78,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
             return JsonResponse;
 
         } catch (IOException e) {
-            Log.i("CTFrame","Error :: "+e.toString());
+            //Log.i("CTFrame","Error :: "+e.toString());
             e.printStackTrace();
         }
         finally {
@@ -89,7 +89,7 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
                 try {
                     reader.close();
                 } catch (final IOException e) {
-                    Log.e("CTFrame", "Error closing stream", e);
+                    //Log.e("CTFrame", "Error closing stream", e);
                 }
             }
         }
@@ -101,8 +101,8 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
     // uploadFile
     //*******************************************************************************************/
     public int uploadFile(String upLoadServerUrl,String loginId, String sourceFileUri) {
-        Log.i("CTFrame", "uploadFile :: 실행 ");
-        Log.i("CTFrame", sourceFileUri);
+        //Log.i("CTFrame", "uploadFile :: 실행 ");
+        //Log.i("CTFrame", sourceFileUri);
 
         String fileName = sourceFileUri;
 
@@ -117,14 +117,14 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
         File sourceFile = new File(sourceFileUri);
         while(!sourceFile.isFile()){}
         if (!sourceFile.isFile()) {
-            Log.i("CTFrame", "파일이 존재하지 않음");
+            //Log.i("CTFrame", "파일이 존재하지 않음");
 
             return 0;
         }
         else
         {
             try {
-                Log.i("CTFrame", "try로 들어옴");
+                //Log.i("CTFrame", "try로 들어옴");
                 Thread.sleep(5000);
                 // open a URL connection to the Servlet
                 FileInputStream fileInputStream = new FileInputStream(sourceFile);
@@ -181,8 +181,8 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
                 serverResponseCode = conn.getResponseCode();
                 String serverResponseMessage = conn.getResponseMessage();
 
-                Log.i("CTFrame", "HTTP Response is : "
-                        + serverResponseMessage + ": " + serverResponseCode);
+                //Log.i("CTFrame", "HTTP Response is : "
+                 //       + serverResponseMessage + ": " + serverResponseCode);
 
                 //close the streams //
                 fileInputStream.close();
@@ -192,12 +192,12 @@ public class SendDataToServer extends AsyncTask<String,String,String> {
             } catch (MalformedURLException ex) {
                 ex.printStackTrace();
 
-                Log.e("CTFrame", "error: " + ex.getMessage(), ex);
+                //Log.e("CTFrame", "error: " + ex.getMessage(), ex);
             } catch (Exception e) {
                 e.printStackTrace();
 
-                Log.e("CTFrame", "Exception : "
-                        + e.getMessage(), e);
+                //Log.e("CTFrame", "Exception : "
+                 //       + e.getMessage(), e);
             }
             return serverResponseCode;
         } // End else block

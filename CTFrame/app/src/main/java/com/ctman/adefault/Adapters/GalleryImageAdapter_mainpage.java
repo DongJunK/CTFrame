@@ -136,7 +136,7 @@ public class GalleryImageAdapter_mainpage extends RecyclerView.Adapter<GalleryIm
 
         @Override
         public boolean onLongClick(View v) {
-            Log.i("CTFrame","LongClickTrue");
+            //Log.i("CTFrame","LongClickTrue");
             clickListener.onLongClick(v,getAdapterPosition(),imageView, checkBox);
 
             //선택 모드 진입하는 사진도 어레이에 넣어주고

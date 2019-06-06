@@ -18,9 +18,9 @@
     android:xlargeScreens="true" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ctframe_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ctframe_launcher_round"
+        android:roundIcon="@drawable/ctframe_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">

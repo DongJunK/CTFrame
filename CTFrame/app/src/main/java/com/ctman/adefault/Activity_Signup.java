@@ -44,11 +44,17 @@ public class Activity_Signup extends AppCompatActivity {
         }
         for(int i=1; i<=12; i++)
         {
-            month.add(i+"");
+            if(i<10)
+                month.add("0"+i);
+            else
+                month.add(i+"");
         }
         for(int i=1; i<=31; i++)
         {
-            day.add(i+"");
+            if(i<10)
+                day.add("0"+i);
+            else
+                day.add(i+"");
         }
 
         //리소스 매칭

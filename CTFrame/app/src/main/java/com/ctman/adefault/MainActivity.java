@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                 if(selectMode)
                 {
                     try{
-                        //Log.i("CTFrameTest",imageView.getColorFilter().toString());
+                        String s = imageView.getColorFilter().toString();
                         imageView.clearColorFilter();
 
                         for(int i=0;i<deleteImageArray.size();++i) {

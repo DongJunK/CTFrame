@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('C:\\Users\\taehyeon\\Desktop\\capstone\\ctframekey.jks')
-            storePassword '1q2w3e4r'
-            keyAlias = 'ctframekey'
-            keyPassword '1q2w3e4r'
-        }
-    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.ctman.adefault"
@@ -17,7 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
 
         repositories {
             mavenCentral()

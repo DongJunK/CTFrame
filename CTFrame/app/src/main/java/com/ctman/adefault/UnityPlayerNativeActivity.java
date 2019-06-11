@@ -12,7 +12,7 @@ public class UnityPlayerNativeActivity extends UnityPlayerActivity
 {
     @Override protected void onCreate (Bundle savedInstanceState)
     {
-        //Log.w("Unity", "UnityPlayerNativeActivity has been deprecated, please update your AndroidManifest to use UnityPlayerActivity instead");
+        Log.w("Unity", "UnityPlayerNativeActivity has been deprecated, please update your AndroidManifest to use UnityPlayerActivity instead");
         super.onCreate(savedInstanceState);
     }
 }
